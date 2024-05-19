@@ -1,5 +1,7 @@
+import { Distribution } from "@/components";
+
 const App = () => {
-  return <div>App</div>;
+  return <Distribution />;
 };
 
 export default App;
