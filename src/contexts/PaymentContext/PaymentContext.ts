@@ -8,6 +8,7 @@ interface PaymentManagment {
   addPay: (intervalId: string) => void;
   isEditing: boolean;
   handleEdit: () => void;
+  paymentsLength: number;
 }
 
 export const PaymentContext = createContext<PaymentManagment | null>(null);

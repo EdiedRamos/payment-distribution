@@ -1,12 +1,17 @@
 import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
 
 import { Payment } from "@/models";
+import { usePayment } from "@/contexts";
 
 interface PaymentInfoProps {
   payment: Payment;
 }
 
 export const PaymentEdit = ({ payment }: PaymentInfoProps) => {
+  const { paymentsLength } = usePayment();
+
+  const cantChangePercentage = paymentsLength < 2;
+
   return (
     <div className="relative flex flex-col items-center text-center">
       <div className="w-[50px] h-[50px] bg-blue-500 rounded-[50%]"></div>
@@ -25,11 +30,19 @@ export const PaymentEdit = ({ payment }: PaymentInfoProps) => {
             </p>
           </div>
           <div className="flex mt-2 gap-4 justify-center items-center">
-            <button type="button" className="w-[30px] h-[30px] text-orange-400">
+            <button
+              disabled={cantChangePercentage}
+              type="button"
+              className="w-[30px] h-[30px] text-orange-400"
+            >
               <CiCircleMinus className="w-full h-full" />
             </button>
             <p>{payment.information.percentage}</p>
-            <button type="button" className="w-[30px] h-[30px] text-orange-400">
+            <button
+              disabled={cantChangePercentage}
+              type="button"
+              className="w-[30px] h-[30px] text-orange-400"
+            >
               <CiCirclePlus className="w-full h-full" />
             </button>
           </div>

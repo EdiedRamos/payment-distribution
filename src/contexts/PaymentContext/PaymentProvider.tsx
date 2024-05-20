@@ -4,6 +4,7 @@ import {
   generateTitle,
   isInterval,
   isPayment,
+  paymentCounter,
 } from "@/utils";
 import { useEffect, useState } from "react";
 
@@ -93,6 +94,7 @@ export const PaymentProvider = ({ children, debt }: PaymentProviderProps) => {
     addPay,
     isEditing,
     handleEdit,
+    paymentsLength: paymentCounter(distributionContent),
   };
 
   return (
