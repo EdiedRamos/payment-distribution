@@ -17,7 +17,6 @@ export interface Interval {
 }
 
 export interface PaymentInfo {
-  id: string;
   title: string;
   quantity: number;
   percentage: number;

@@ -12,13 +12,19 @@ export const Distribution = () => {
         {payment.distributionContent.map((data) => {
           if (data.type === DistributionType.Interval) {
             return (
-              <button className="relative flex justify-center items-center w-[25px] h-[25px] bg-gray-200 rounded-[50%]">
+              <button
+                key={data.id}
+                className="relative flex justify-center items-center w-[25px] h-[25px] bg-gray-200 rounded-[50%]"
+              >
                 <FaPlus size={12} className="text-orange-500" />
               </button>
             );
           }
           return (
-            <div className="relative flex flex-col items-center text-center">
+            <div
+              key={data.id}
+              className="relative flex flex-col items-center text-center"
+            >
               <button className="w-[50px] h-[50px] bg-orange-500 rounded-[50%]"></button>
               <div className="absolute border-2 rounded-md p-2 min-w-[150px] top-14">
                 <p className="font-bold">{data.information.title}</p>
