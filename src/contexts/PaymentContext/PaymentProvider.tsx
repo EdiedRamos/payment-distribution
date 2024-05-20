@@ -1,4 +1,4 @@
-import { PaymentContext } from "@/context/PaymentContext";
+import { PaymentContext } from "./PaymentContext";
 
 interface PaymentProviderProps {
   children: React.ReactNode;
