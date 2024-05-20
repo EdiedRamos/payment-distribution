@@ -1,4 +1,4 @@
-import type { CurrencyInfo } from "@/interfaces";
+import type { CurrencyInfo } from "@/models";
 import { createContext } from "react";
 
 interface PaymentManagment {

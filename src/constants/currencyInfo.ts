@@ -1,5 +1,4 @@
-import { Currency } from "@/enums";
-import type { CurrencyInfo } from "@/interfaces";
+import { Currency, type CurrencyInfo } from "@/models";
 
 type CurrencyInfoMap = Record<Currency, CurrencyInfo>;
 

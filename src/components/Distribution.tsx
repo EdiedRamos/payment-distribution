@@ -1,49 +1,28 @@
+import { Currency, DistributionType } from "@/models";
+import type { Interval, Payment, PaymentInfo } from "@/models";
+
 import { FaPlus } from "react-icons/fa";
+import { currencyInfo } from "@/constants";
 import { useState } from "react";
 
-enum Type {
-  Interval,
-  Payment,
-}
-
-interface PaymentInfo {
-  id: string;
-  title: string;
-  quantity: number;
-  percentage: number;
-  dateToPay: string;
-  currency: string;
-}
-
-interface Payment {
-  id: string;
-  type: Type.Payment;
-  information: PaymentInfo;
-}
-
-interface Interval {
-  id: string;
-  type: Type.Interval;
-}
-
-type Distribution = (Payment | Interval)[];
+type DistributionContent = (Payment | Interval)[];
 
 const INFORMATION_MOCK: Omit<PaymentInfo, "id"> = {
   title: "Anticipo",
   quantity: 182,
   percentage: 100,
   dateToPay: "22 Ene, 2022",
-  currency: "USD",
+  currency: currencyInfo[Currency.USD],
 };
 
 export const Distribution = () => {
-  const [distribution, setDistribution] = useState<Distribution>([
+  const [distribution, setDistribution] = useState<DistributionContent>([
     {
       id: crypto.randomUUID(),
-      type: Type.Payment,
+      type: DistributionType.Payment,
       information: { id: crypto.randomUUID(), ...INFORMATION_MOCK },
     },
-    { id: crypto.randomUUID(), type: Type.Interval },
+    { id: crypto.randomUUID(), type: DistributionType.Interval },
   ]);
 
   const handleDistribution = (actionId: string) => {
@@ -52,10 +31,10 @@ export const Distribution = () => {
       ...prev,
       {
         id: crypto.randomUUID(),
-        type: Type.Payment,
+        type: DistributionType.Payment,
         information: { id: crypto.randomUUID(), ...INFORMATION_MOCK },
       },
-      { id: crypto.randomUUID(), type: Type.Interval },
+      { id: crypto.randomUUID(), type: DistributionType.Interval },
     ]);
   };
 
@@ -64,7 +43,7 @@ export const Distribution = () => {
       <div className="relative inline-flex gap-20 items-center ml-16">
         <div className="absolute border-2 w-full -z-10 border-gray-200"></div>
         {distribution.map((data) => {
-          if (data.type === Type.Interval) {
+          if (data.type === DistributionType.Interval) {
             return (
               <button
                 onClick={() => handleDistribution(data.id)}
@@ -80,7 +59,7 @@ export const Distribution = () => {
               <div className="absolute border-2 rounded-md p-2 min-w-[150px] top-14">
                 <p className="font-bold">{data.information.title}</p>
                 <p className="text-sm">
-                  {data.information.quantity} {data.information.currency} (
+                  {data.information.quantity} {data.information.currency.code} (
                   {data.information.percentage}%)
                 </p>
                 <p className="text-sm">{data.information.dateToPay}</p>
