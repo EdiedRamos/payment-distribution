@@ -8,11 +8,11 @@ export const Distribution = () => {
   return (
     <div className="w-full h-[250px] overflow-auto">
       <div className="relative inline-flex gap-20 items-center ml-16">
-        <div className="absolute border-2 w-full -z-10 border-gray-200"></div>
+        <div className="absolute border-2 w-full border-gray-200"></div>
         {payment.distributionContent.map((data) => {
           if (data.type === DistributionType.Interval) {
             return (
-              <button className="flex justify-center items-center w-[25px] h-[25px] bg-gray-200 rounded-[50%]">
+              <button className="relative flex justify-center items-center w-[25px] h-[25px] bg-gray-200 rounded-[50%]">
                 <FaPlus size={12} className="text-orange-500" />
               </button>
             );
