@@ -1,11 +1,11 @@
 import { DEBT_MOCK } from "@/constants";
-import { Payment } from "@/components";
+import { PaymentAdmin } from "@/components";
 import { PaymentProvider } from "@/contexts";
 
 const App = () => {
   return (
     <PaymentProvider debt={DEBT_MOCK}>
-      <Payment />
+      <PaymentAdmin />
     </PaymentProvider>
   );
 };
