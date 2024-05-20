@@ -18,6 +18,12 @@ export const PaymentProvider = ({ children, debt }: PaymentProviderProps) => {
   const [distributionContent, setDistributionContent] =
     useState<DistributionContent>([]);
 
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+
+  const handleEdit = () => {
+    setIsEditing((prev) => !prev);
+  };
+
   const addPay = (intervalId: string) => {
     const intervalIndex = distributionContent.findIndex(
       (distribution) => distribution.id === intervalId
@@ -85,6 +91,8 @@ export const PaymentProvider = ({ children, debt }: PaymentProviderProps) => {
     debt,
     distributionContent,
     addPay,
+    isEditing,
+    handleEdit,
   };
 
   return (

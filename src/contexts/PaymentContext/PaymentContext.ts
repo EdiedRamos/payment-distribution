@@ -6,6 +6,8 @@ interface PaymentManagment {
   debt: Debt;
   distributionContent: DistributionContent;
   addPay: (intervalId: string) => void;
+  isEditing: boolean;
+  handleEdit: () => void;
 }
 
 export const PaymentContext = createContext<PaymentManagment | null>(null);
