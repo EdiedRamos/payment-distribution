@@ -5,6 +5,7 @@ import { createContext } from "react";
 interface PaymentManagment {
   debt: Debt;
   distributionContent: DistributionContent;
+  addPay: (intervalId: string) => void;
 }
 
 export const PaymentContext = createContext<PaymentManagment | null>(null);

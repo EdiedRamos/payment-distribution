@@ -15,6 +15,7 @@ export const Distribution = () => {
               <button
                 key={data.id}
                 className="relative flex justify-center items-center w-[25px] h-[25px] bg-gray-200 rounded-[50%]"
+                onClick={() => payment.addPay(data.id)}
               >
                 <FaPlus size={12} className="text-orange-500" />
               </button>
