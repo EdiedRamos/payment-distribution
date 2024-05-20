@@ -1,4 +1,5 @@
 import { Payment } from "@/models";
+import { withOneDecimal } from "@/utils";
 
 interface PaymentInfoProps {
   payment: Payment;
@@ -11,8 +12,9 @@ export const PaymentInfo = ({ payment }: PaymentInfoProps) => {
       <div className="absolute border-2 rounded-md p-2 min-w-[150px] top-14">
         <p className="font-bold">{payment.information.title}</p>
         <p className="text-sm">
-          {payment.information.quantity} {payment.information.currency.code} (
-          {payment.information.percentage}%)
+          {withOneDecimal(payment.information.quantity)}{" "}
+          {payment.information.currency.code} ({payment.information.percentage}
+          %)
         </p>
         <p className="text-sm">{payment.information.dateToPay}</p>
       </div>
