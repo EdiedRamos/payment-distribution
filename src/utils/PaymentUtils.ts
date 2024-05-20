@@ -17,7 +17,11 @@ export function generateInterval(): Interval {
   };
 }
 
-export function generateTitle(content: DistributionContent): string {
+export function paymentCounter(content: DistributionContent): number {
   const countPayments = content.filter((content) => isPayment(content));
-  return `Pago ${countPayments.length + 1}`;
+  return countPayments.length;
+}
+
+export function generateTitle(content: DistributionContent): string {
+  return `Pago ${paymentCounter(content) + 1}`;
 }
