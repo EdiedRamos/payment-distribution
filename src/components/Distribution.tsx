@@ -1,11 +1,9 @@
 import { Currency, DistributionType } from "@/models";
-import type { Interval, Payment, PaymentInfo } from "@/models";
+import type { DistributionContent, PaymentInfo } from "@/models";
 
 import { FaPlus } from "react-icons/fa";
 import { currencyInfo } from "@/constants";
 import { useState } from "react";
-
-type DistributionContent = (Payment | Interval)[];
 
 const INFORMATION_MOCK: Omit<PaymentInfo, "id"> = {
   title: "Anticipo",
