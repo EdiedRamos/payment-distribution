@@ -1,11 +1,10 @@
-import { Currency } from "@/models";
+import { DEBT_MOCK } from "@/constants";
 import { Payment } from "@/components";
 import { PaymentProvider } from "@/contexts";
-import { currencyInfo } from "@/constants";
 
 const App = () => {
   return (
-    <PaymentProvider totalPayment={182} currency={currencyInfo[Currency.USD]}>
+    <PaymentProvider debt={DEBT_MOCK}>
       <Payment />
     </PaymentProvider>
   );

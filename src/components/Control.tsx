@@ -35,7 +35,7 @@ export const Control = () => {
         <p>
           <span>Por cobrar</span>{" "}
           <span className="font-bold">
-            {payment.totalPayment} {payment.currency.code}
+            {payment.debt.remaining} {payment.debt.currency.code}
           </span>
         </p>
       </div>

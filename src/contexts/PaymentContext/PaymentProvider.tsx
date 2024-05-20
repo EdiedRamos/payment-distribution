@@ -1,48 +1,20 @@
-import {
-  Currency,
-  CurrencyInfo,
-  DistributionContent,
-  DistributionType,
-  PaymentInfo,
-} from "@/models";
+import { Debt, DistributionContent } from "@/models";
 
 import { PaymentContext } from "./PaymentContext";
-import { currencyInfo } from "@/constants";
 import { useState } from "react";
 
 interface PaymentProviderProps {
   children: React.ReactNode;
-  totalPayment: number;
-  currency: CurrencyInfo;
+  debt: Debt;
 }
 
-const INFORMATION_MOCK: Omit<PaymentInfo, "id"> = {
-  title: "Anticipo",
-  quantity: 182,
-  percentage: 100,
-  dateToPay: "22 Ene, 2022",
-  currency: currencyInfo[Currency.USD],
-};
-
-export const PaymentProvider = ({
-  children,
-  totalPayment,
-  currency,
-}: PaymentProviderProps) => {
+export const PaymentProvider = ({ children, debt }: PaymentProviderProps) => {
   const [distributionContent, setDistributionContent] =
-    useState<DistributionContent>([
-      {
-        id: crypto.randomUUID(),
-        type: DistributionType.Payment,
-        information: { id: crypto.randomUUID(), ...INFORMATION_MOCK },
-      },
-      { id: crypto.randomUUID(), type: DistributionType.Interval },
-    ]);
+    useState<DistributionContent>([]);
 
   const values = {
+    debt,
     distributionContent,
-    totalPayment,
-    currency,
   };
 
   return (

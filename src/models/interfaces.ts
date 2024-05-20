@@ -1,5 +1,12 @@
 import { DistributionType } from "@/models";
 
+export interface Debt {
+  id: string;
+  quantity: number;
+  remaining: number;
+  currency: CurrencyInfo;
+}
+
 export interface CurrencyInfo {
   code: string;
 }

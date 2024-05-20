@@ -1,10 +1,9 @@
-import type { CurrencyInfo, DistributionContent } from "@/models";
+import type { Debt, DistributionContent } from "@/models";
 
 import { createContext } from "react";
 
 interface PaymentManagment {
-  totalPayment: number;
-  currency: CurrencyInfo;
+  debt: Debt;
   distributionContent: DistributionContent;
 }
 
