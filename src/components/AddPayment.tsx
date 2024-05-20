@@ -11,6 +11,7 @@ export const AddPayment = ({ interval }: AddPaymenetProps) => {
 
   return (
     <button
+      disabled={payment.isEditing}
       className="relative flex justify-center items-center w-[25px] h-[25px] bg-gray-200 rounded-[50%]"
       onClick={() => payment.addPay(interval.id)}
     >
