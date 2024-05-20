@@ -1,4 +1,6 @@
-import { DistributionType, Interval, Payment } from "@/models";
+import type { DistributionContent, Interval, Payment } from "@/models";
+
+import { DistributionType } from "@/models";
 
 export function isInterval(content: Payment | Interval) {
   return content.type === DistributionType.Interval;
@@ -13,4 +15,9 @@ export function generateInterval(): Interval {
     id: crypto.randomUUID(),
     type: DistributionType.Interval,
   };
+}
+
+export function generateTitle(content: DistributionContent): string {
+  const countPayments = content.filter((content) => isPayment(content));
+  return `Pago ${countPayments.length + 1}`;
 }

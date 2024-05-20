@@ -1,5 +1,10 @@
 import { Debt, DistributionContent, DistributionType, Payment } from "@/models";
-import { generateInterval, isInterval, isPayment } from "@/utils";
+import {
+  generateInterval,
+  generateTitle,
+  isInterval,
+  isPayment,
+} from "@/utils";
 import { useEffect, useState } from "react";
 
 import { PaymentContext } from "./PaymentContext";
@@ -40,7 +45,7 @@ export const PaymentProvider = ({ children, debt }: PaymentProviderProps) => {
             quantity,
             percentage,
             dateToPay: "22 Ene, 2022",
-            title: "Pago",
+            title: generateTitle(prevDistribution),
           },
         };
 
