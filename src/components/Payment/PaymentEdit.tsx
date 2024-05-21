@@ -1,5 +1,6 @@
 import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
 
+import type { ChangeEvent } from "react";
 import { Payment } from "@/models";
 import { usePayment } from "@/contexts";
 
@@ -8,9 +9,13 @@ interface PaymentInfoProps {
 }
 
 export const PaymentEdit = ({ payment }: PaymentInfoProps) => {
-  const { paymentsLength } = usePayment();
+  const { paymentsLength, editTitle } = usePayment();
 
   const cantChangePercentage = paymentsLength < 2;
+
+  const handleChangeTitle = (event: ChangeEvent<HTMLInputElement>) => {
+    editTitle(payment.id, event.target.value);
+  };
 
   return (
     <div className="relative flex flex-col items-center text-center">
@@ -20,6 +25,7 @@ export const PaymentEdit = ({ payment }: PaymentInfoProps) => {
           <input
             className="border-2 p-1 rounded-md w-full font-bold"
             type="text"
+            onChange={handleChangeTitle}
             value={payment.information.title}
             placeholder="Título"
           />
@@ -37,7 +43,7 @@ export const PaymentEdit = ({ payment }: PaymentInfoProps) => {
             >
               <CiCircleMinus className="w-full h-full" />
             </button>
-            <p>{payment.information.percentage}</p>
+            <p className="font-medium">{payment.information.percentage}%</p>
             <button
               disabled={cantChangePercentage}
               type="button"

@@ -9,6 +9,7 @@ import {
 import { useEffect, useState } from "react";
 
 import { PaymentContext } from "./PaymentContext";
+import { changeTitle } from "./PaymentHelpers";
 
 interface PaymentProviderProps {
   children: React.ReactNode;
@@ -23,6 +24,10 @@ export const PaymentProvider = ({ children, debt }: PaymentProviderProps) => {
 
   const handleEdit = () => {
     setIsEditing((prev) => !prev);
+  };
+
+  const editTitle = (paymentId: string, newTitle: string): void => {
+    setDistributionContent((prev) => changeTitle(prev, paymentId, newTitle));
   };
 
   const addPay = (intervalId: string) => {
@@ -94,6 +99,7 @@ export const PaymentProvider = ({ children, debt }: PaymentProviderProps) => {
     addPay,
     isEditing,
     handleEdit,
+    editTitle,
     paymentsLength: paymentCounter(distributionContent),
   };
 

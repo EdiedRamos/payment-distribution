@@ -9,6 +9,7 @@ interface PaymentManagment {
   isEditing: boolean;
   handleEdit: () => void;
   paymentsLength: number;
+  editTitle: (paymentId: string, newTitle: string) => void;
 }
 
 export const PaymentContext = createContext<PaymentManagment | null>(null);

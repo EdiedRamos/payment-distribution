@@ -2,11 +2,11 @@ import type { DistributionContent, Interval, Payment } from "@/models";
 
 import { DistributionType } from "@/models";
 
-export function isInterval(content: Payment | Interval) {
+export function isInterval(content: Payment | Interval): content is Interval {
   return content.type === DistributionType.Interval;
 }
 
-export function isPayment(content: Payment | Interval) {
+export function isPayment(content: Payment | Interval): content is Payment {
   return content.type === DistributionType.Payment;
 }
 
