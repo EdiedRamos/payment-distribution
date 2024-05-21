@@ -17,3 +17,25 @@ export function changeTitle(
     };
   });
 }
+
+export function incrementPercentage(
+  content: DistributionContent,
+  changeId: string
+): DistributionContent {
+  return content;
+}
+
+export function decrementPercentage(
+  content: DistributionContent,
+  changeId: string
+): DistributionContent {
+  return content;
+}
+
+export function changeEndDate(
+  content: DistributionContent,
+  changeId: string,
+  newDate: string
+): DistributionContent {
+  return content;
+}

@@ -30,6 +30,18 @@ export const PaymentProvider = ({ children, debt }: PaymentProviderProps) => {
     setDistributionContent((prev) => changeTitle(prev, paymentId, newTitle));
   };
 
+  const addPercentage = (paymentId: string) => {
+    alert(`INCREMENT ${paymentId}`);
+  };
+
+  const subtractPercentage = (paymentId: string) => {
+    alert(`SUBTRACT ${paymentId}`);
+  };
+
+  const editEndDate = (paymentId: string, newDate: string) => {
+    alert(`ENDDATE ${paymentId}`);
+  };
+
   const addPay = (intervalId: string) => {
     const intervalIndex = distributionContent.findIndex(
       (distribution) => distribution.id === intervalId
@@ -100,6 +112,9 @@ export const PaymentProvider = ({ children, debt }: PaymentProviderProps) => {
     isEditing,
     handleEdit,
     editTitle,
+    addPercentage,
+    subtractPercentage,
+    editEndDate,
     paymentsLength: paymentCounter(distributionContent),
   };
 

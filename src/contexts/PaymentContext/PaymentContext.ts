@@ -5,11 +5,14 @@ import { createContext } from "react";
 interface PaymentManagment {
   debt: Debt;
   distributionContent: DistributionContent;
-  addPay: (intervalId: string) => void;
   isEditing: boolean;
-  handleEdit: () => void;
   paymentsLength: number;
+  addPay: (intervalId: string) => void;
+  handleEdit: () => void;
   editTitle: (paymentId: string, newTitle: string) => void;
+  addPercentage: (paymentId: string) => void;
+  subtractPercentage: (paymentId: string) => void;
+  editEndDate: (paymentId: string, newDate: string) => void;
 }
 
 export const PaymentContext = createContext<PaymentManagment | null>(null);

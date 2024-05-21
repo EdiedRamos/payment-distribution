@@ -1,21 +1,20 @@
 import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
 
-import type { ChangeEvent } from "react";
 import { Payment } from "@/models";
-import { usePayment } from "@/contexts";
+import { usePaymentEdit } from "@/hooks";
 
 interface PaymentInfoProps {
   payment: Payment;
 }
 
 export const PaymentEdit = ({ payment }: PaymentInfoProps) => {
-  const { paymentsLength, editTitle } = usePayment();
-
-  const cantChangePercentage = paymentsLength < 2;
-
-  const handleChangeTitle = (event: ChangeEvent<HTMLInputElement>) => {
-    editTitle(payment.id, event.target.value);
-  };
+  const {
+    handleChangeTitle,
+    cantChangePercentage,
+    handleDecrement,
+    handleIncrement,
+    handleChangeDate,
+  } = usePaymentEdit({ payment });
 
   return (
     <div className="relative flex flex-col items-center text-center">
@@ -38,6 +37,7 @@ export const PaymentEdit = ({ payment }: PaymentInfoProps) => {
           <div className="flex mt-2 gap-4 justify-center items-center">
             <button
               disabled={cantChangePercentage}
+              onClick={handleDecrement}
               type="button"
               className="w-[30px] h-[30px] text-orange-400"
             >
@@ -46,6 +46,7 @@ export const PaymentEdit = ({ payment }: PaymentInfoProps) => {
             <p className="font-medium">{payment.information.percentage}%</p>
             <button
               disabled={cantChangePercentage}
+              onClick={handleIncrement}
               type="button"
               className="w-[30px] h-[30px] text-orange-400"
             >
@@ -55,6 +56,7 @@ export const PaymentEdit = ({ payment }: PaymentInfoProps) => {
           <div>
             <p className="font-medium text-gray-500">Vence</p>
             <input
+              onChange={handleChangeDate}
               className="bg-inherit focus:outline-none focus:ring-2 focus:ring-orange-400 focus:rounded-sm p-1"
               type="date"
             />
