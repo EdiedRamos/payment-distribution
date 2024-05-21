@@ -20,7 +20,7 @@ export interface PaymentInfo {
   title: string;
   quantity: number;
   percentage: number;
-  dateToPay: string;
+  dateToPay: Date;
   currency: CurrencyInfo;
 }
 

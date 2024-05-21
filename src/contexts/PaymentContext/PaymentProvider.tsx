@@ -68,7 +68,7 @@ export const PaymentProvider = ({ children, debt }: PaymentProviderProps) => {
             currency: debt.currency,
             quantity,
             percentage,
-            dateToPay: "22 Ene, 2022",
+            dateToPay: new Date(),
             title: generateTitle(prevDistribution),
           },
         };
@@ -97,7 +97,7 @@ export const PaymentProvider = ({ children, debt }: PaymentProviderProps) => {
           currency: debt.currency,
           quantity: debt.quantity,
           percentage: 100,
-          dateToPay: "22 Ene, 2022",
+          dateToPay: new Date(),
           title: "Anticipo",
         },
       },

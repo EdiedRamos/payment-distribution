@@ -16,7 +16,9 @@ export const PaymentInfo = ({ payment }: PaymentInfoProps) => {
           {payment.information.currency.code} ({payment.information.percentage}
           %)
         </p>
-        <p className="text-sm">{payment.information.dateToPay}</p>
+        <p className="text-sm">
+          {payment.information.dateToPay.toLocaleString()}
+        </p>
       </div>
     </div>
   );
