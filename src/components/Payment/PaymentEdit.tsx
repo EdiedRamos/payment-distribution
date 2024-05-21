@@ -1,6 +1,7 @@
 import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
 
 import { Payment } from "@/models";
+import { toYearMonthDay } from "@/utils";
 import { usePaymentEdit } from "@/hooks";
 
 interface PaymentInfoProps {
@@ -57,6 +58,7 @@ export const PaymentEdit = ({ payment }: PaymentInfoProps) => {
             <p className="font-medium text-gray-500">Vence</p>
             <input
               onChange={handleChangeDate}
+              value={toYearMonthDay(payment.information.dateToPay)}
               className="bg-inherit focus:outline-none focus:ring-2 focus:ring-orange-400 focus:rounded-sm p-1"
               type="date"
             />
