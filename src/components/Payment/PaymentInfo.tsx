@@ -1,5 +1,6 @@
+import { toAbbreviateDate, withOneDecimal } from "@/utils";
+
 import { Payment } from "@/models";
-import { withOneDecimal } from "@/utils";
 
 interface PaymentInfoProps {
   payment: Payment;
@@ -17,7 +18,7 @@ export const PaymentInfo = ({ payment }: PaymentInfoProps) => {
           %)
         </p>
         <p className="text-sm">
-          {payment.information.dateToPay.toLocaleString()}
+          {toAbbreviateDate(payment.information.dateToPay)}
         </p>
       </div>
     </div>
