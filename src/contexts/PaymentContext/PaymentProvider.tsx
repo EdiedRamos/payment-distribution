@@ -1,4 +1,5 @@
 import { Debt, DistributionContent, DistributionType, Payment } from "@/models";
+import { changeEndDate, changeTitle } from "./PaymentHelpers";
 import {
   generateInterval,
   generateTitle,
@@ -9,7 +10,6 @@ import {
 import { useEffect, useState } from "react";
 
 import { PaymentContext } from "./PaymentContext";
-import { changeTitle } from "./PaymentHelpers";
 
 interface PaymentProviderProps {
   children: React.ReactNode;
@@ -39,7 +39,7 @@ export const PaymentProvider = ({ children, debt }: PaymentProviderProps) => {
   };
 
   const editEndDate = (paymentId: string, newDate: string) => {
-    alert(`ENDDATE ${paymentId}`);
+    setDistributionContent((prev) => changeEndDate(prev, paymentId, newDate));
   };
 
   const addPay = (intervalId: string) => {

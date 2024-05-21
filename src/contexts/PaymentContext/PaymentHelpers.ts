@@ -1,5 +1,6 @@
+import { isInterval, toLocaleDate } from "@/utils";
+
 import type { DistributionContent } from "@/models";
-import { isInterval } from "@/utils";
 
 export function changeTitle(
   content: DistributionContent,
@@ -37,5 +38,14 @@ export function changeEndDate(
   changeId: string,
   newDate: string
 ): DistributionContent {
-  return content;
+  return content.map((content) => {
+    if (content.id !== changeId || isInterval(content)) return content;
+    return {
+      ...content,
+      information: {
+        ...content.information,
+        dateToPay: toLocaleDate(newDate),
+      },
+    };
+  });
 }

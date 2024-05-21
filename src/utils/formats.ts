@@ -9,7 +9,14 @@ export function toYearMonthDay(date: Date): string {
 }
 
 export function toAbbreviateDate(date: Date): string {
-  return `${date.getDay()} ${
+  return `${date.getDate()} ${
     MONTH_NAMES.ABBREVIATE[date.getMonth()]
   } ${date.getFullYear()}`;
+}
+
+export function toLocaleDate(date: string): Date {
+  const [year, month, day] = date.split("-").map(Number);
+  const newDate = new Date(Date.UTC(year, month - 1, day));
+  newDate.setMinutes(newDate.getMinutes() + newDate.getTimezoneOffset());
+  return newDate;
 }
