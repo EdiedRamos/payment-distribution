@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { MutableRefObject, useEffect, useRef, useState } from "react";
 
 import type { Option } from "@/models";
 
 interface useSelect {
   options: Option[];
+  selectedRef?: MutableRefObject<Option | null>;
 }
 
 function findOption(options: Option[]): Option {
@@ -16,7 +17,7 @@ function findOption(options: Option[]): Option {
   return defaultOption[0];
 }
 
-export const useSelect = ({ options }: useSelect) => {
+export const useSelect = ({ options, selectedRef }: useSelect) => {
   const selectRef = useRef<HTMLDivElement>(null);
 
   const [selectedOption, setSelectedOption] = useState<Option>(() =>
@@ -41,6 +42,11 @@ export const useSelect = ({ options }: useSelect) => {
       setShowOptions(false);
     }
   };
+
+  useEffect(() => {
+    if (!selectedRef) return;
+    selectedRef.current = selectedOption;
+  }, [selectedOption]);
 
   useEffect(() => {
     document.addEventListener("mousedown", handleOutside);

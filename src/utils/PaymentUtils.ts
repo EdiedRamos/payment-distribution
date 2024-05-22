@@ -1,6 +1,12 @@
-import type { DistributionContent, Interval, Payment } from "@/models";
+import type {
+  DistributionContent,
+  Interval,
+  Payment,
+  PaymentMethod,
+} from "@/models";
 
 import { DistributionType } from "@/models";
+import { PAYMENT_METHODS } from "@/constants";
 
 export function isInterval(content: Payment | Interval): content is Interval {
   return content.type === DistributionType.Interval;
@@ -38,4 +44,8 @@ export function getQuantityFromPercentage(
   percentage: number
 ): number {
   return (total * percentage) / 100;
+}
+
+export function isPaymentMethod(value: string): value is PaymentMethod {
+  return PAYMENT_METHODS.includes(value as PaymentMethod);
 }

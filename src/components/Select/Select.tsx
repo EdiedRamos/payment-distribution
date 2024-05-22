@@ -1,14 +1,16 @@
 import { MdExpandMore } from "react-icons/md";
+import { MutableRefObject } from "react";
 import type { Option } from "@/models";
 import { SelectOptions } from "@/components";
 import { useSelect } from "@/hooks";
 
 interface Select {
+  selectedRef?: MutableRefObject<Option | null>;
   options: Option[];
 }
 
-export const Select = ({ options }: Select) => {
-  const select = useSelect({ options });
+export const Select = ({ options, selectedRef }: Select) => {
+  const select = useSelect({ options, selectedRef });
   const { selectRef, handleShowOptions, selectedOption, showOptions } = select;
 
   return (

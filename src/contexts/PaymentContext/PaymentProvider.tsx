@@ -2,6 +2,7 @@ import {
   Debt,
   DistributionContent,
   DistributionType,
+  PaymentMethod,
   PaymentModalInfo,
 } from "@/models";
 import {
@@ -9,8 +10,9 @@ import {
   changeEndDate,
   changePercentage,
   changeTitle,
+  setPayment,
 } from "./PaymentHelpers";
-import { generateInterval, paymentCounter } from "@/utils";
+import { generateInterval, isInterval, paymentCounter } from "@/utils";
 import { useEffect, useState } from "react";
 
 import { PaymentContext } from "./PaymentContext";
@@ -72,8 +74,10 @@ export const PaymentProvider = ({ children, debt }: PaymentProviderProps) => {
     });
   };
 
-  const handlePayTransactionConfirm = () => {
-    console.log("PENDING: ", paymentModalInfo.paymentId);
+  const handlePayTransactionConfirm = (paymentMethod: PaymentMethod) => {
+    setDistributionContent((prev) =>
+      setPayment(prev, paymentModalInfo.paymentId, paymentMethod)
+    );
     handlePayTransactionEnd();
   };
 

@@ -1,5 +1,6 @@
 import {
   DistributionType,
+  PaymentMethod,
   type Debt,
   type DistributionContent,
   type Payment,
@@ -275,4 +276,23 @@ export function addPayment(
   }
 
   return content;
+}
+
+export function setPayment(
+  content: DistributionContent,
+  paymentId: string,
+  paymentMethod: PaymentMethod
+): DistributionContent {
+  return content.map((pay) => {
+    if (pay.id !== paymentId || isInterval(pay)) return pay;
+    return {
+      ...pay,
+      isPaid: true,
+      transaction: {
+        id: crypto.randomUUID(),
+        date: new Date(),
+        method: paymentMethod,
+      },
+    };
+  });
 }

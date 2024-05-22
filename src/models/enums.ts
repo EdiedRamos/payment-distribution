@@ -7,8 +7,3 @@ export enum DistributionType {
   Interval,
   Payment,
 }
-
-export enum PaymentMethod {
-  CARD,
-  CASH,
-}

@@ -1,8 +1,19 @@
+import { Option } from "@/models";
 import { Select } from "./Select";
+import { isPaymentMethod } from "@/utils";
 import { usePayment } from "@/contexts";
+import { useRef } from "react";
 
 export const PaymentTransaction = () => {
   const { handlePayTransactionEnd, handlePayTransactionConfirm } = usePayment();
+
+  const selectedRef = useRef<Option | null>(null);
+
+  const handleSave = () => {
+    if (!selectedRef.current) return;
+    if (!isPaymentMethod(selectedRef.current.name)) return;
+    handlePayTransactionConfirm(selectedRef.current.name);
+  };
 
   return (
     <div className="m-3">
@@ -12,9 +23,14 @@ export const PaymentTransaction = () => {
         <p>Estado</p>
         <Select
           options={[
-            { id: "1", name: "Efectivo", default: true },
+            {
+              id: "1",
+              name: "Efectivo",
+              default: true,
+            },
             { id: "2", name: "Tarjeta" },
           ]}
+          selectedRef={selectedRef}
         />
       </div>
       <div className="flex justify-end gap-3">
@@ -25,7 +41,7 @@ export const PaymentTransaction = () => {
           Cancelar
         </button>
         <button
-          onClick={handlePayTransactionConfirm}
+          onClick={handleSave}
           className="p-2 bg-orange-500 rounded-md text-white"
         >
           Guardar

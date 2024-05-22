@@ -14,7 +14,9 @@ export const PaymentInfo = ({ payment }: PaymentInfoProps) => {
     <div className="relative flex flex-col items-center text-center">
       <button
         onClick={() => handlePayTransactionStart(payment.id)}
-        className="w-[50px] h-[50px] bg-orange-500 rounded-[50%]"
+        className={`w-[50px] h-[50px] ${
+          payment.isPaid ? "bg-green-500" : "bg-orange-500"
+        }  rounded-[50%]`}
       ></button>
       <div className="absolute border-2 rounded-md p-2 min-w-[150px] top-14">
         <p className="font-bold">{payment.information.title}</p>

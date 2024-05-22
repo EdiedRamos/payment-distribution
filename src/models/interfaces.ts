@@ -1,4 +1,4 @@
-import { DistributionType } from "@/models";
+import { DistributionType, PaymentMethod } from "@/models";
 
 export interface Debt {
   id: string;
@@ -24,14 +24,10 @@ export interface PaymentInfo {
   currency: CurrencyInfo;
 }
 
-export interface PaymentMethodInfo {
-  label: string;
-}
-
 export interface Transaction {
   id: string;
   date: Date;
-  method: PaymentMethodInfo;
+  method: PaymentMethod;
 }
 
 export interface Payment {

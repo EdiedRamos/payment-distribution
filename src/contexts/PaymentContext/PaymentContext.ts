@@ -1,4 +1,9 @@
-import type { Debt, DistributionContent, PaymentModalInfo } from "@/models";
+import type {
+  Debt,
+  DistributionContent,
+  PaymentMethod,
+  PaymentModalInfo,
+} from "@/models";
 
 import { createContext } from "react";
 
@@ -15,7 +20,7 @@ interface PaymentManagment {
   editEndDate: (paymentId: string, newDate: string) => void;
   handlePayTransactionStart: (paymentId: string) => void;
   handlePayTransactionEnd: () => void;
-  handlePayTransactionConfirm: () => void;
+  handlePayTransactionConfirm: (paymentMethod: PaymentMethod) => void;
   paymentModalInfo: PaymentModalInfo;
 }
 
