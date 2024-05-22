@@ -24,6 +24,7 @@ class DataBase {
         ],
         distributions: [],
       };
+      this.save();
     }
   }
 
@@ -40,7 +41,7 @@ class DataBase {
 
   save(): boolean {
     try {
-      const stringify = JSON.stringify(database.database);
+      const stringify = JSON.stringify(this.database);
       localStorage.setItem("database", stringify);
       return true;
     } catch {

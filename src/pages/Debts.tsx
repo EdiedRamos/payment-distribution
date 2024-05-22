@@ -1,14 +1,12 @@
-import { Debt } from "@/models";
-import { useAppNavigate } from "@/hooks";
-
-const DEBTS_MOCK: Debt[] = [];
+import { useAppNavigate, useDebt } from "@/hooks";
 
 export const Debts = () => {
   const { goToPayment } = useAppNavigate();
+  const { debts } = useDebt();
 
   return (
     <div className="container mx-auto flex justify-center flex-wrap gap-5 mt-5">
-      {DEBTS_MOCK.map((debt, index) => (
+      {debts.map((debt, index) => (
         <div
           onClick={() => goToPayment(debt.id)}
           key={debt.id}
