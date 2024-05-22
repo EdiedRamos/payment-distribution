@@ -1,13 +1,8 @@
-import { DEBT_MOCK } from "@/constants";
-import { PaymentAdmin } from "@/components";
-import { PaymentProvider } from "@/contexts";
+import { Router } from "@/routes";
+import { RouterProvider } from "react-router-dom";
 
 const App = () => {
-  return (
-    <PaymentProvider debt={DEBT_MOCK}>
-      <PaymentAdmin />
-    </PaymentProvider>
-  );
+  return <RouterProvider router={Router} />;
 };
 
 export default App;
