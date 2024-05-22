@@ -56,20 +56,8 @@ export const PaymentProvider = ({ children, debt }: PaymentProviderProps) => {
         id: "91c760dc-0779-452a-aa8c-6b133c31ddb1",
         information: {
           currency: debt.currency,
-          quantity: debt.quantity / 2,
-          percentage: 100 / 2,
-          dateToPay: new Date(),
-          title: "Anticipo",
-        },
-      },
-      generateInterval(),
-      {
-        type: DistributionType.Payment,
-        id: "21c760dc-0779-452a-aa8c-6b133c31ddb1",
-        information: {
-          currency: debt.currency,
-          quantity: debt.quantity / 2,
-          percentage: 100 / 2,
+          quantity: debt.quantity,
+          percentage: 100,
           dateToPay: new Date(),
           title: "Anticipo",
         },
