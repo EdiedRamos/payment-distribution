@@ -75,6 +75,7 @@ export function changeTitle(
 }
 
 export function changePercentage(
+  debt: Debt,
   content: DistributionContent,
   changeId: string,
   increment: number
@@ -114,13 +115,14 @@ export function changePercentage(
       !wasChanged
     ) {
       wasChanged = true;
+      const percentage =
+        leftPayment.information.percentage + getOppositeOperation(increment);
       return {
         ...leftPayment,
         information: {
           ...leftPayment.information,
-          percentage:
-            leftPayment.information.percentage +
-            getOppositeOperation(increment),
+          quantity: getQuantityFromPercentage(debt.quantity, percentage),
+          percentage,
         },
       };
     }
@@ -132,13 +134,14 @@ export function changePercentage(
       !wasChanged
     ) {
       wasChanged = true;
+      const percentage =
+        rightPayment.information.percentage + getOppositeOperation(increment);
       return {
         ...rightPayment,
         information: {
           ...rightPayment.information,
-          percentage:
-            rightPayment.information.percentage +
-            getOppositeOperation(increment),
+          quantity: getQuantityFromPercentage(debt.quantity, percentage),
+          percentage,
         },
       };
     }
@@ -148,11 +151,13 @@ export function changePercentage(
       isPayment(pay) &&
       (canChangeLeft || canChangeRight)
     ) {
+      const percentage = pay.information.percentage + increment;
       return {
         ...pay,
         information: {
           ...pay.information,
-          percentage: pay.information.percentage + increment,
+          quantity: getQuantityFromPercentage(debt.quantity, percentage),
+          percentage,
         },
       };
     }

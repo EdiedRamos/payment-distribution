@@ -30,11 +30,15 @@ export const PaymentProvider = ({ children, debt }: PaymentProviderProps) => {
   };
 
   const addPercentage = (paymentId: string) => {
-    setDistributionContent((prev) => changePercentage(prev, paymentId, 1));
+    setDistributionContent((prev) =>
+      changePercentage(debt, prev, paymentId, 1)
+    );
   };
 
   const subtractPercentage = (paymentId: string) => {
-    setDistributionContent((prev) => changePercentage(prev, paymentId, -1));
+    setDistributionContent((prev) =>
+      changePercentage(debt, prev, paymentId, -1)
+    );
   };
 
   const editEndDate = (paymentId: string, newDate: string) => {
