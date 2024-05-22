@@ -13,6 +13,8 @@ interface PaymentManagment {
   addPercentage: (paymentId: string) => void;
   subtractPercentage: (paymentId: string) => void;
   editEndDate: (paymentId: string, newDate: string) => void;
+  handlePay: (paymentId: string) => void;
+  showPaymentModal: boolean;
 }
 
 export const PaymentContext = createContext<PaymentManagment | null>(null);

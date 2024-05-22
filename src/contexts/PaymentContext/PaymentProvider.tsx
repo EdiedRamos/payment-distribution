@@ -19,6 +19,7 @@ export const PaymentProvider = ({ children, debt }: PaymentProviderProps) => {
   const [distributionContent, setDistributionContent] =
     useState<DistributionContent>([]);
 
+  const [showPaymentModal, setShowPaymentModal] = useState<boolean>(false);
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const handleEdit = () => {
@@ -49,6 +50,8 @@ export const PaymentProvider = ({ children, debt }: PaymentProviderProps) => {
     setDistributionContent((prev) => addPayment(debt, prev, intervalId));
   };
 
+  const handlePay = (paymentId: string) => {};
+
   useEffect(() => {
     setDistributionContent([
       {
@@ -77,6 +80,8 @@ export const PaymentProvider = ({ children, debt }: PaymentProviderProps) => {
     addPercentage,
     subtractPercentage,
     editEndDate,
+    handlePay,
+    showPaymentModal,
     paymentsLength: paymentCounter(distributionContent),
   };
 
