@@ -27,14 +27,8 @@ export function generateTitle(content: DistributionContent): string {
 }
 
 export function toRoundHalf(value: number): { first: number; second: number } {
-  if (value % 2 === 0)
-    return {
-      first: value / 2,
-      second: value / 2,
-    };
-  value++;
   return {
-    first: value / 2,
-    second: value / 2 - 1,
+    first: Math.ceil(value / 2),
+    second: Math.floor(value / 2),
   };
 }
