@@ -24,10 +24,21 @@ export interface PaymentInfo {
   currency: CurrencyInfo;
 }
 
+export interface PaymentMethodInfo {
+  label: string;
+}
+
+export interface Transaction {
+  id: string;
+  date: Date;
+  method: PaymentMethodInfo;
+}
+
 export interface Payment {
   id: string;
   type: DistributionType.Payment;
   isPaid: boolean;
+  transaction?: Transaction;
   information: PaymentInfo;
 }
 
