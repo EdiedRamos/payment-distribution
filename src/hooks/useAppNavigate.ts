@@ -8,5 +8,8 @@ export const useAppNavigate = () => {
     goToPayment: (paymentId: string) => {
       navigate("/" + URLS.payment.replace(":paymentId", paymentId));
     },
+    goToDebts: () => {
+      navigate("/" + URLS.debts);
+    },
   };
 };
