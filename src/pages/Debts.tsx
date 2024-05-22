@@ -1,4 +1,5 @@
-import { useAppNavigate, useDebt } from "@/hooks";
+import { useAppNavigate } from "@/hooks";
+import { useDebt } from "@/contexts";
 
 export const Debts = () => {
   const { goToPayment } = useAppNavigate();

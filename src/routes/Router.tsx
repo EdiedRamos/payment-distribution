@@ -2,6 +2,7 @@ import { Debts, Payment } from "@/pages";
 import { MainHeader, PaymentHeader } from "@/layouts";
 import { Navigate, createBrowserRouter } from "react-router-dom";
 
+import { DebtProvider } from "@/contexts";
 import { URLS } from "@/constants";
 
 export const Router = createBrowserRouter([
@@ -11,7 +12,11 @@ export const Router = createBrowserRouter([
   },
   {
     path: URLS.debts,
-    element: <MainHeader />,
+    element: (
+      <DebtProvider>
+        <MainHeader />
+      </DebtProvider>
+    ),
     children: [{ index: true, element: <Debts /> }],
   },
   {
