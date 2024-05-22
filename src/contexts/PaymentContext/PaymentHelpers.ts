@@ -1,5 +1,17 @@
-import type { DistributionContent, Payment } from "@/models";
-import { isInterval, isPayment, toLocaleDate } from "@/utils";
+import {
+  DistributionType,
+  type Debt,
+  type DistributionContent,
+  type Payment,
+} from "@/models";
+import {
+  generateInterval,
+  generateTitle,
+  isInterval,
+  isPayment,
+  toLocaleDate,
+  toRoundHalf,
+} from "@/utils";
 
 function getOppositeOperation(value: number): number {
   return value * -1;
@@ -9,6 +21,11 @@ function canChangePercentage(payment: Payment, change: number): boolean {
   // todo: Validate unpaid status
   if (change > 0) return true;
   return payment.information.percentage >= Math.abs(change);
+}
+
+function canTakeHalf(payment: Payment): boolean {
+  // todo: Validate unpaid status
+  return payment.information.percentage >= 2;
 }
 
 function getLeftPayment(
@@ -157,4 +174,82 @@ export function changeEndDate(
       },
     };
   });
+}
+
+export function addPayment(
+  debt: Debt,
+  content: DistributionContent,
+  intervalId: string
+): DistributionContent {
+  const intervalIndex = content.findIndex(
+    (distribution) => distribution.id === intervalId
+  );
+
+  if (intervalIndex < 1 || !isInterval(content[intervalIndex])) return content;
+
+  const leftPayment = getLeftPayment(content, intervalIndex);
+  const rightPayment = getRightPayment(content, intervalIndex);
+
+  if (!leftPayment && !rightPayment) return content;
+
+  if (leftPayment && canTakeHalf(leftPayment)) {
+    const leftPart = content.slice(0, intervalIndex - 1);
+    const rightPart = content.slice(intervalIndex + 1);
+    const halfPercentage = toRoundHalf(leftPayment.information.percentage);
+    return [
+      ...leftPart,
+      {
+        ...leftPayment,
+        information: {
+          ...leftPayment.information,
+          percentage: halfPercentage.first,
+        },
+      },
+      content[intervalIndex],
+      {
+        id: crypto.randomUUID(),
+        type: DistributionType.Payment,
+        information: {
+          currency: debt.currency,
+          quantity: 100,
+          percentage: halfPercentage.second,
+          dateToPay: new Date(),
+          title: generateTitle(content),
+        },
+      },
+      generateInterval(),
+      ...rightPart,
+    ];
+  }
+
+  if (rightPayment && canTakeHalf(rightPayment)) {
+    const leftPart = content.slice(0, intervalIndex + 1);
+    const rightPart = content.slice(intervalIndex + 2);
+    const halfPercentage = toRoundHalf(rightPayment.information.percentage);
+    return [
+      ...leftPart,
+      {
+        id: crypto.randomUUID(),
+        type: DistributionType.Payment,
+        information: {
+          currency: debt.currency,
+          quantity: 100,
+          percentage: halfPercentage.second,
+          dateToPay: new Date(),
+          title: generateTitle(content),
+        },
+      },
+      generateInterval(),
+      {
+        ...rightPayment,
+        information: {
+          ...rightPayment.information,
+          percentage: halfPercentage.first,
+        },
+      },
+      ...rightPart,
+    ];
+  }
+
+  return content;
 }

@@ -25,3 +25,16 @@ export function paymentCounter(content: DistributionContent): number {
 export function generateTitle(content: DistributionContent): string {
   return `Pago ${paymentCounter(content) + 1}`;
 }
+
+export function toRoundHalf(value: number): { first: number; second: number } {
+  if (value % 2 === 0)
+    return {
+      first: value / 2,
+      second: value / 2,
+    };
+  value++;
+  return {
+    first: value / 2,
+    second: value / 2 - 1,
+  };
+}

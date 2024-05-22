@@ -1,5 +1,10 @@
 import { Debt, DistributionContent, DistributionType, Payment } from "@/models";
-import { changeEndDate, changePercentage, changeTitle } from "./PaymentHelpers";
+import {
+  addPayment,
+  changeEndDate,
+  changePercentage,
+  changeTitle,
+} from "./PaymentHelpers";
 import {
   generateInterval,
   generateTitle,
@@ -43,49 +48,7 @@ export const PaymentProvider = ({ children, debt }: PaymentProviderProps) => {
   };
 
   const addPay = (intervalId: string) => {
-    const intervalIndex = distributionContent.findIndex(
-      (distribution) => distribution.id === intervalId
-    );
-
-    if (intervalIndex < 1 || !isInterval(distributionContent[intervalIndex])) {
-      return;
-    }
-
-    if (isPayment(distributionContent[intervalIndex - 1])) {
-      setDistributionContent((prevDistribution) => {
-        const leftPart = prevDistribution.slice(0, intervalIndex - 1);
-        const rightPart = prevDistribution.slice(intervalIndex + 1);
-
-        const leftPay = distributionContent[intervalIndex - 1] as Payment;
-
-        const percentage = leftPay.information.percentage / 2;
-        const quantity = leftPay.information.quantity / 2;
-
-        const newPay: Payment = {
-          id: crypto.randomUUID(),
-          type: DistributionType.Payment,
-          information: {
-            currency: debt.currency,
-            quantity,
-            percentage,
-            dateToPay: new Date(),
-            title: generateTitle(prevDistribution),
-          },
-        };
-
-        return [
-          ...leftPart,
-          {
-            ...leftPay,
-            information: { ...leftPay.information, percentage, quantity },
-          },
-          distributionContent[intervalIndex],
-          newPay,
-          generateInterval(),
-          ...rightPart,
-        ];
-      });
-    }
+    setDistributionContent((prev) => addPayment(debt, prev, intervalId));
   };
 
   useEffect(() => {
