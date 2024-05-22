@@ -57,6 +57,7 @@ export const PaymentEdit = ({ payment }: PaymentInfoProps) => {
           <div>
             <p className="font-medium text-gray-500">Vence</p>
             <input
+              disabled={payment.isPaid}
               onChange={handleChangeDate}
               value={toYearMonthDay(payment.information.dateToPay)}
               className="bg-inherit focus:outline-none focus:ring-2 focus:ring-orange-400 focus:rounded-sm p-1"
