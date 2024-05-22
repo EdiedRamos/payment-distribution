@@ -27,5 +27,6 @@ export interface PaymentInfo {
 export interface Payment {
   id: string;
   type: DistributionType.Payment;
+  isPaid: boolean;
   information: PaymentInfo;
 }

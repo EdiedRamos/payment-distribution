@@ -54,6 +54,7 @@ export const PaymentProvider = ({ children, debt }: PaymentProviderProps) => {
       {
         type: DistributionType.Payment,
         id: "91c760dc-0779-452a-aa8c-6b133c31ddb1",
+        isPaid: false,
         information: {
           currency: debt.currency,
           quantity: debt.quantity,

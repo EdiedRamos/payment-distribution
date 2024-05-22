@@ -220,6 +220,7 @@ export function addPayment(
       {
         id: crypto.randomUUID(),
         type: DistributionType.Payment,
+        isPaid: false,
         information: {
           currency: debt.currency,
           quantity: getQuantityFromPercentage(
@@ -245,6 +246,7 @@ export function addPayment(
       {
         id: crypto.randomUUID(),
         type: DistributionType.Payment,
+        isPaid: false,
         information: {
           currency: debt.currency,
           quantity: getQuantityFromPercentage(
