@@ -1,4 +1,4 @@
-import type { Debt, DistributionContent } from "@/models";
+import type { Debt, DistributionContent, PaymentModalInfo } from "@/models";
 
 import { createContext } from "react";
 
@@ -13,8 +13,9 @@ interface PaymentManagment {
   addPercentage: (paymentId: string) => void;
   subtractPercentage: (paymentId: string) => void;
   editEndDate: (paymentId: string, newDate: string) => void;
-  handlePay: (paymentId: string) => void;
-  showPaymentModal: boolean;
+  handlePayTransaction: (paymentId: string) => void;
+  handlePayTransactionEnd: () => void;
+  paymentModalInfo: PaymentModalInfo;
 }
 
 export const PaymentContext = createContext<PaymentManagment | null>(null);

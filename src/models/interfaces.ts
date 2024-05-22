@@ -30,3 +30,8 @@ export interface Payment {
   isPaid: boolean;
   information: PaymentInfo;
 }
+
+export interface PaymentModalInfo {
+  showModal: boolean;
+  paymentId: string;
+}

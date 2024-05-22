@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { FaWindowClose } from "react-icons/fa";
 import ReactDOM from "react-dom";
@@ -6,12 +6,20 @@ import ReactDOM from "react-dom";
 interface ModalProps {
   children?: React.ReactNode;
   show: boolean;
+  onClose?: () => void;
 }
 
-export const Modal = ({ children, show }: ModalProps) => {
+export const Modal = ({ children, show, onClose }: ModalProps) => {
   const [render, setRender] = useState<boolean>(show);
 
-  const hide = () => setRender(false);
+  useEffect(() => {
+    setRender(show);
+  }, [show]);
+
+  const hide = () => {
+    setRender(false);
+    onClose && onClose();
+  };
 
   if (!render) return null;
 
