@@ -185,7 +185,8 @@ export function addPayment(
     (distribution) => distribution.id === intervalId
   );
 
-  if (intervalIndex < 1 || !isInterval(content[intervalIndex])) return content;
+  if (intervalIndex === -1 || !isInterval(content[intervalIndex]))
+    return content;
 
   const leftPayment = getLeftPayment(content, intervalIndex);
   const rightPayment = getRightPayment(content, intervalIndex);
