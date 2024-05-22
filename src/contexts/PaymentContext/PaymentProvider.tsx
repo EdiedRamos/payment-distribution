@@ -1,5 +1,5 @@
 import { Debt, DistributionContent, DistributionType, Payment } from "@/models";
-import { changeEndDate, changeTitle } from "./PaymentHelpers";
+import { changeEndDate, changePercentage, changeTitle } from "./PaymentHelpers";
 import {
   generateInterval,
   generateTitle,
@@ -31,11 +31,11 @@ export const PaymentProvider = ({ children, debt }: PaymentProviderProps) => {
   };
 
   const addPercentage = (paymentId: string) => {
-    alert(`INCREMENT ${paymentId}`);
+    setDistributionContent((prev) => changePercentage(prev, paymentId, 1));
   };
 
   const subtractPercentage = (paymentId: string) => {
-    alert(`SUBTRACT ${paymentId}`);
+    setDistributionContent((prev) => changePercentage(prev, paymentId, -1));
   };
 
   const editEndDate = (paymentId: string, newDate: string) => {
@@ -95,8 +95,20 @@ export const PaymentProvider = ({ children, debt }: PaymentProviderProps) => {
         id: "91c760dc-0779-452a-aa8c-6b133c31ddb1",
         information: {
           currency: debt.currency,
-          quantity: debt.quantity,
-          percentage: 100,
+          quantity: debt.quantity / 2,
+          percentage: 100 / 2,
+          dateToPay: new Date(),
+          title: "Anticipo",
+        },
+      },
+      generateInterval(),
+      {
+        type: DistributionType.Payment,
+        id: "21c760dc-0779-452a-aa8c-6b133c31ddb1",
+        information: {
+          currency: debt.currency,
+          quantity: debt.quantity / 2,
+          percentage: 100 / 2,
           dateToPay: new Date(),
           title: "Anticipo",
         },
