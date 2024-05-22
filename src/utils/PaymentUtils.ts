@@ -32,3 +32,10 @@ export function toRoundHalf(value: number): { first: number; second: number } {
     second: Math.floor(value / 2),
   };
 }
+
+export function getQuantityFromPercentage(
+  total: number,
+  percentage: number
+): number {
+  return (total * percentage) / 100;
+}

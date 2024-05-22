@@ -7,6 +7,7 @@ import {
 import {
   generateInterval,
   generateTitle,
+  getQuantityFromPercentage,
   isInterval,
   isPayment,
   toLocaleDate,
@@ -203,6 +204,10 @@ export function addPayment(
         ...leftPayment,
         information: {
           ...leftPayment.information,
+          quantity: getQuantityFromPercentage(
+            debt.quantity,
+            halfPercentage.first
+          ),
           percentage: halfPercentage.first,
         },
       },
@@ -212,7 +217,10 @@ export function addPayment(
         type: DistributionType.Payment,
         information: {
           currency: debt.currency,
-          quantity: 100,
+          quantity: getQuantityFromPercentage(
+            debt.quantity,
+            halfPercentage.second
+          ),
           percentage: halfPercentage.second,
           dateToPay: new Date(),
           title: generateTitle(content),
@@ -234,7 +242,10 @@ export function addPayment(
         type: DistributionType.Payment,
         information: {
           currency: debt.currency,
-          quantity: 100,
+          quantity: getQuantityFromPercentage(
+            debt.quantity,
+            halfPercentage.second
+          ),
           percentage: halfPercentage.second,
           dateToPay: new Date(),
           title: generateTitle(content),
@@ -245,6 +256,10 @@ export function addPayment(
         ...rightPayment,
         information: {
           ...rightPayment.information,
+          quantity: getQuantityFromPercentage(
+            debt.quantity,
+            halfPercentage.first
+          ),
           percentage: halfPercentage.first,
         },
       },
