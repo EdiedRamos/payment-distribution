@@ -1,17 +1,11 @@
-import { Debt, DistributionContent, DistributionType, Payment } from "@/models";
+import { Debt, DistributionContent, DistributionType } from "@/models";
 import {
   addPayment,
   changeEndDate,
   changePercentage,
   changeTitle,
 } from "./PaymentHelpers";
-import {
-  generateInterval,
-  generateTitle,
-  isInterval,
-  isPayment,
-  paymentCounter,
-} from "@/utils";
+import { generateInterval, paymentCounter } from "@/utils";
 import { useEffect, useState } from "react";
 
 import { PaymentContext } from "./PaymentContext";
