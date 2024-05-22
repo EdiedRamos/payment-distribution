@@ -1,4 +1,4 @@
-import { DistributionType, PaymentMethod } from "@/models";
+import { DistributionContent, DistributionType, PaymentMethod } from "@/models";
 
 export interface Debt {
   id: string;
@@ -50,4 +50,15 @@ export interface Option {
   id: string;
   name: string;
   default?: boolean;
+}
+
+export interface Distribution {
+  id: string;
+  debtId: string;
+  content: DistributionContent;
+}
+
+export interface DatabaseContent {
+  debts: Debt[];
+  distributions: Distribution[];
 }

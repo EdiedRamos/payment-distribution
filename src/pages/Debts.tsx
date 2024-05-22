@@ -1,38 +1,7 @@
-import { Currency, Debt } from "@/models";
-
-import { currencyInfo } from "@/constants";
+import { Debt } from "@/models";
 import { useAppNavigate } from "@/hooks";
 
-const DEBTS_MOCK: Debt[] = [
-  {
-    id: "0c955323-ddb2-4e6a-a78d-646825fcfdfa",
-    currency: currencyInfo[Currency.USD],
-    quantity: 182,
-    paid: 0,
-    isPaid: false,
-  },
-  {
-    id: "1c955323-ddb2-4e6a-a78d-646825fcfdfa",
-    currency: currencyInfo[Currency.COP],
-    quantity: 1250000,
-    paid: 500000,
-    isPaid: false,
-  },
-  {
-    id: "2c955323-ddb2-4e6a-a78d-646825fcfdfa",
-    currency: currencyInfo[Currency.USD],
-    quantity: 500,
-    paid: 100,
-    isPaid: false,
-  },
-  {
-    id: "3c955323-ddb2-4e6a-a78d-646825fcfdfa",
-    currency: currencyInfo[Currency.USD],
-    quantity: 100,
-    paid: 100,
-    isPaid: true,
-  },
-];
+const DEBTS_MOCK: Debt[] = [];
 
 export const Debts = () => {
   const { goToPayment } = useAppNavigate();
