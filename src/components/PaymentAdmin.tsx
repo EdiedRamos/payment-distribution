@@ -14,7 +14,7 @@ export const PaymentAdmin = () => {
       >
         <PaymentTransaction />
       </Modal>
-      <div className="border-2 rounded-lg bg-gray-50">
+      <div className="border-2 rounded-lg bg-gray-50 mt-5 mx-5">
         <Control />
         <Distribution />
       </div>

@@ -1,7 +1,7 @@
 import { Currency, Debt } from "@/models";
 
 import { currencyInfo } from "@/constants";
-import { useAppNavigate } from "@/hooks/useAppNavigate";
+import { useAppNavigate } from "@/hooks";
 
 const DEBTS_MOCK: Debt[] = [
   {
