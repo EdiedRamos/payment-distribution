@@ -1,4 +1,4 @@
-import { Control, Distribution } from "@/components";
+import { Control, Distribution, PaymentTransaction } from "@/components";
 
 import { Modal } from "./Modal";
 import { usePayment } from "@/contexts";
@@ -12,7 +12,7 @@ export const PaymentAdmin = () => {
         show={paymentModalInfo.showModal}
         onClose={handlePayTransactionEnd}
       >
-        <p>EdiedRamos</p>
+        <PaymentTransaction />
       </Modal>
       <div className="border-2 rounded-lg bg-gray-50">
         <Control />
