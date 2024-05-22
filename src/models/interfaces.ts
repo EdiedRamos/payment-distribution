@@ -3,8 +3,9 @@ import { DistributionType, PaymentMethod } from "@/models";
 export interface Debt {
   id: string;
   quantity: number;
-  remaining: number;
+  paid: number;
   currency: CurrencyInfo;
+  isPaid: boolean;
 }
 
 export interface CurrencyInfo {

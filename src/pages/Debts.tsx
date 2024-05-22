@@ -8,25 +8,29 @@ const DEBTS_MOCK: Debt[] = [
     id: "0c955323-ddb2-4e6a-a78d-646825fcfdfa",
     currency: currencyInfo[Currency.USD],
     quantity: 182,
-    remaining: 0,
+    paid: 0,
+    isPaid: false,
   },
   {
     id: "1c955323-ddb2-4e6a-a78d-646825fcfdfa",
     currency: currencyInfo[Currency.COP],
     quantity: 1250000,
-    remaining: 1250000,
+    paid: 500000,
+    isPaid: false,
   },
   {
     id: "2c955323-ddb2-4e6a-a78d-646825fcfdfa",
     currency: currencyInfo[Currency.USD],
     quantity: 500,
-    remaining: 500,
+    paid: 100,
+    isPaid: false,
   },
   {
     id: "3c955323-ddb2-4e6a-a78d-646825fcfdfa",
     currency: currencyInfo[Currency.USD],
     quantity: 100,
-    remaining: 100,
+    paid: 100,
+    isPaid: true,
   },
 ];
 
@@ -43,7 +47,7 @@ export const Debts = () => {
         >
           <p>Deuda: {index + 1}</p>
           <p>
-            {debt.remaining}/{debt.quantity} {debt.currency.code}
+            {debt.paid}/{debt.quantity} {debt.currency.code}
           </p>
         </div>
       ))}

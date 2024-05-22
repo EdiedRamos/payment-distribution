@@ -6,6 +6,8 @@ import { usePayment } from "@/contexts";
 export const Control = () => {
   const payment = usePayment();
 
+  const debtRemaining = payment.debt.quantity - payment.debt.paid;
+
   return (
     <div className="flex flex-wrap justify-between border-b-2 p-5 mb-5">
       <button className="flex text-orange-500 items-center gap-2">
@@ -32,7 +34,7 @@ export const Control = () => {
         <p>
           <span>Por cobrar</span>{" "}
           <span className="font-bold">
-            {payment.debt.remaining} {payment.debt.currency.code}
+            {debtRemaining} {payment.debt.currency.code}
           </span>
         </p>
       </div>
