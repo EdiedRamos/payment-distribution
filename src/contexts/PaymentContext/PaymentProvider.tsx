@@ -12,7 +12,7 @@ import {
   changeTitle,
   setPayment,
 } from "./PaymentHelpers";
-import { generateInterval, paymentCounter } from "@/utils";
+import { generateInterval, getNextToPayId, paymentCounter } from "@/utils";
 import { useEffect, useState } from "react";
 
 import { PaymentContext } from "./PaymentContext";
@@ -114,6 +114,7 @@ export const PaymentProvider = ({ children, debt }: PaymentProviderProps) => {
     handlePayTransactionConfirm,
     paymentModalInfo,
     paymentsLength: paymentCounter(distributionContent),
+    nextToPayId: getNextToPayId(distributionContent),
   };
 
   return (

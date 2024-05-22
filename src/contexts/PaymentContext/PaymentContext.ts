@@ -22,6 +22,7 @@ interface PaymentManagment {
   handlePayTransactionEnd: () => void;
   handlePayTransactionConfirm: (paymentMethod: PaymentMethod) => void;
   paymentModalInfo: PaymentModalInfo;
+  nextToPayId: string | null;
 }
 
 export const PaymentContext = createContext<PaymentManagment | null>(null);

@@ -28,6 +28,15 @@ export function paymentCounter(content: DistributionContent): number {
   return countPayments.length;
 }
 
+export function getNextToPayId(content: DistributionContent): string | null {
+  for (const payment of content) {
+    if (isPayment(payment) && !payment.isPaid) {
+      return payment.id;
+    }
+  }
+  return null;
+}
+
 export function generateTitle(content: DistributionContent): string {
   return `Pago ${paymentCounter(content) + 1}`;
 }

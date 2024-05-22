@@ -8,11 +8,12 @@ interface PaymentInfoProps {
 }
 
 export const PaymentInfo = ({ payment }: PaymentInfoProps) => {
-  const { handlePayTransactionStart } = usePayment();
+  const { handlePayTransactionStart, nextToPayId } = usePayment();
 
   return (
     <div className="relative flex flex-col items-center text-center">
       <button
+        disabled={nextToPayId !== payment.id}
         onClick={() => handlePayTransactionStart(payment.id)}
         className={`w-[50px] h-[50px] ${
           payment.isPaid ? "bg-green-500" : "bg-orange-500"
