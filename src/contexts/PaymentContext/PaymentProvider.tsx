@@ -12,7 +12,7 @@ import {
   changeTitle,
   setPayment,
 } from "./PaymentHelpers";
-import { generateInterval, isInterval, paymentCounter } from "@/utils";
+import { generateInterval, paymentCounter } from "@/utils";
 import { useEffect, useState } from "react";
 
 import { PaymentContext } from "./PaymentContext";
