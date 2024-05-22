@@ -16,7 +16,11 @@ export const PaymentInfo = ({ payment }: PaymentInfoProps) => {
         disabled={nextToPayId !== payment.id}
         onClick={() => handlePayTransactionStart(payment.id)}
         className={`w-[50px] h-[50px] ${
-          payment.isPaid ? "bg-green-500" : "bg-orange-500"
+          payment.isPaid
+            ? "bg-green-500"
+            : payment.id !== nextToPayId
+            ? "bg-gray-200"
+            : "bg-orange-500"
         }  rounded-[50%]`}
       ></button>
       <div className="absolute border-2 rounded-md p-2 min-w-[150px] top-14">
