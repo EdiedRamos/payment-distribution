@@ -1,6 +1,9 @@
 import { Select } from "./Select";
+import { usePayment } from "@/contexts";
 
 export const PaymentTransaction = () => {
+  const { handlePayTransactionEnd, handlePayTransactionConfirm } = usePayment();
+
   return (
     <div className="m-3">
       <h3 className="font-bold text-lg">Pagar</h3>
@@ -15,10 +18,16 @@ export const PaymentTransaction = () => {
         />
       </div>
       <div className="flex justify-end gap-3">
-        <button className="p-2 rounded-md border-2 border-blue-500">
+        <button
+          onClick={handlePayTransactionEnd}
+          className="p-2 rounded-md border-2 border-blue-500"
+        >
           Cancelar
         </button>
-        <button className="p-2 bg-orange-500 rounded-md text-white">
+        <button
+          onClick={handlePayTransactionConfirm}
+          className="p-2 bg-orange-500 rounded-md text-white"
+        >
           Guardar
         </button>
       </div>

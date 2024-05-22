@@ -8,12 +8,12 @@ interface PaymentInfoProps {
 }
 
 export const PaymentInfo = ({ payment }: PaymentInfoProps) => {
-  const { handlePayTransaction } = usePayment();
+  const { handlePayTransactionStart } = usePayment();
 
   return (
     <div className="relative flex flex-col items-center text-center">
       <button
-        onClick={() => handlePayTransaction(payment.id)}
+        onClick={() => handlePayTransactionStart(payment.id)}
         className="w-[50px] h-[50px] bg-orange-500 rounded-[50%]"
       ></button>
       <div className="absolute border-2 rounded-md p-2 min-w-[150px] top-14">

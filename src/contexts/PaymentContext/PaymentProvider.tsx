@@ -58,7 +58,7 @@ export const PaymentProvider = ({ children, debt }: PaymentProviderProps) => {
     setDistributionContent((prev) => addPayment(debt, prev, intervalId));
   };
 
-  const handlePayTransaction = (paymentId: string) => {
+  const handlePayTransactionStart = (paymentId: string) => {
     setPaymentModalInfo({
       showModal: true,
       paymentId,
@@ -70,6 +70,11 @@ export const PaymentProvider = ({ children, debt }: PaymentProviderProps) => {
       showModal: false,
       paymentId: "",
     });
+  };
+
+  const handlePayTransactionConfirm = () => {
+    console.log("PENDING: ", paymentModalInfo.paymentId);
+    handlePayTransactionEnd();
   };
 
   useEffect(() => {
@@ -100,8 +105,9 @@ export const PaymentProvider = ({ children, debt }: PaymentProviderProps) => {
     addPercentage,
     subtractPercentage,
     editEndDate,
-    handlePayTransaction,
+    handlePayTransactionStart,
     handlePayTransactionEnd,
+    handlePayTransactionConfirm,
     paymentModalInfo,
     paymentsLength: paymentCounter(distributionContent),
   };

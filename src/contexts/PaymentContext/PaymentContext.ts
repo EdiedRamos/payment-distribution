@@ -13,8 +13,9 @@ interface PaymentManagment {
   addPercentage: (paymentId: string) => void;
   subtractPercentage: (paymentId: string) => void;
   editEndDate: (paymentId: string, newDate: string) => void;
-  handlePayTransaction: (paymentId: string) => void;
+  handlePayTransactionStart: (paymentId: string) => void;
   handlePayTransactionEnd: () => void;
+  handlePayTransactionConfirm: () => void;
   paymentModalInfo: PaymentModalInfo;
 }
 
