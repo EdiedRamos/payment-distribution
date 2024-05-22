@@ -30,9 +30,16 @@ export const PaymentInfo = ({ payment }: PaymentInfoProps) => {
           {payment.information.currency.code} ({payment.information.percentage}
           %)
         </p>
-        <p className="text-sm">
-          {toAbbreviateDate(payment.information.dateToPay)}
-        </p>
+        {payment.isPaid && payment.transaction ? (
+          <p className="text-green-600">
+            Pagado {toAbbreviateDate(payment.transaction.date)} con{" "}
+            {payment?.transaction?.method}
+          </p>
+        ) : (
+          <p className="text-sm">
+            {toAbbreviateDate(payment.information.dateToPay)}
+          </p>
+        )}
       </div>
     </div>
   );
