@@ -35,3 +35,11 @@ export interface PaymentModalInfo {
   showModal: boolean;
   paymentId: string;
 }
+
+// TODO: Organize content by context
+
+export interface Option {
+  id: string;
+  name: string;
+  default?: boolean;
+}

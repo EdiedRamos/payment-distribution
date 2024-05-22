@@ -1,3 +1,5 @@
+import { Select } from "./Select";
+
 export const PaymentTransaction = () => {
   return (
     <div className="m-3">
@@ -5,10 +7,12 @@ export const PaymentTransaction = () => {
       <p>Selecciona el método de pago.</p>
       <div>
         <p>Estado</p>
-        <select>
-          <option>Efectivo</option>
-          <option>Tarjeta</option>
-        </select>
+        <Select
+          options={[
+            { id: "1", name: "Efectivo", default: true },
+            { id: "2", name: "Tarjeta" },
+          ]}
+        />
       </div>
       <div className="flex justify-end gap-3">
         <button className="p-2 rounded-md border-2 border-blue-500">
