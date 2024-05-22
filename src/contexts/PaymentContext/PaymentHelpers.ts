@@ -20,13 +20,13 @@ function getOppositeOperation(value: number): number {
 }
 
 function canChangePercentage(payment: Payment, change: number): boolean {
-  // todo: Validate unpaid status
+  if (payment.isPaid) return false;
   if (change > 0) return true;
   return payment.information.percentage >= Math.abs(change);
 }
 
 function canTakeHalf(payment: Payment): boolean {
-  // todo: Validate unpaid status
+  if (payment.isPaid) return false;
   return payment.information.percentage >= 2;
 }
 
