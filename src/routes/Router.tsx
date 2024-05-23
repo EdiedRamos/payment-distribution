@@ -24,4 +24,8 @@ export const Router = createBrowserRouter([
     element: <PaymentHeader />,
     children: [{ index: true, element: <Payment /> }],
   },
+  {
+    path: URLS.all,
+    element: <Navigate to={URLS.debts} />,
+  },
 ]);
