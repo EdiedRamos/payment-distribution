@@ -7,9 +7,21 @@ import { withOneDecimal } from "@/utils";
 export const Control = () => {
   const payment = usePayment();
 
+  if (payment.debt.isPaid) {
+    return (
+      <div className="bg-green-500 border-b-2 rounded-t-md p-5 mb-3">
+        <p className="text-center text-white font-medium">PAGO COMPLETO</p>
+      </div>
+    );
+  }
+
   const debtRemaining = withOneDecimal(
     payment.debt.quantity - payment.debt.paid
   );
+
+  const buttonText = payment.isEditing ? "Guardar" : "Editar";
+
+  const buttonIcon = payment.isEditing ? <FaRegSave /> : <FaPen />;
 
   return (
     <div className="flex flex-wrap justify-between border-b-2 p-5 mb-5">
@@ -18,22 +30,13 @@ export const Control = () => {
         <RiArrowDownWideLine />
       </button>
       <div className="flex items-center flex-wrap gap-5">
-        {payment.isEditing ? (
-          <button
-            className="flex items-center gap-2 bg-orange-500 text-white rounded-md p-2"
-            onClick={payment.handleEdit}
-          >
-            Guardar <FaRegSave />
-          </button>
-        ) : (
-          <button
-            onClick={payment.handleEdit}
-            className="flex items-center gap-2 text-orange-500 p-2"
-          >
-            Editar <FaPen />
-          </button>
-        )}
-
+        <button
+          disabled={payment.debt.isPaid}
+          className="flex items-center gap-2 bg-orange-500 text-white rounded-md p-2"
+          onClick={payment.handleEdit}
+        >
+          {buttonText} {buttonIcon}
+        </button>
         <p>
           <span>Por cobrar</span>{" "}
           <span className="font-bold">
