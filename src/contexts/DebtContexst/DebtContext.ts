@@ -6,8 +6,7 @@ interface DebtManagment {
   handleShow: () => void;
   handleHide: () => void;
   debts: Debt[];
-  // addDebt: (debt: Debt) => void;
-  addDebt: () => void;
+  addDebt: (debt: Debt) => void;
 }
 
 export const DebtContext = createContext<DebtManagment | null>(null);
