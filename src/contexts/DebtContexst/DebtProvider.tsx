@@ -13,7 +13,7 @@ export const DebtProvider = ({ children }: DebtProvider) => {
   const [debts, setDebts] = useState<Debt[]>([]);
 
   const addDebt = (debt: Debt) => {
-    // debtService.addDebt(debt);
+    debtService.addDebt(debt);
     setDebts((prev) => [...prev, debt]);
     setShowAddModal(false);
   };
