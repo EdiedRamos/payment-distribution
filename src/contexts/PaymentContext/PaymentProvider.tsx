@@ -1,4 +1,9 @@
-import { DistributionContent, PaymentMethod, PaymentModalInfo } from "@/models";
+import {
+  Debt,
+  DistributionContent,
+  PaymentMethod,
+  PaymentModalInfo,
+} from "@/models";
 import {
   addPayment,
   changeEndDate,
@@ -8,6 +13,7 @@ import {
 } from "./PaymentHelpers";
 import {
   buildPayment,
+  completedPayments,
   generateInterval,
   getNextToPayId,
   paymentCounter,
@@ -24,7 +30,9 @@ interface PaymentProviderProps {
 
 export const PaymentProvider = ({ children }: PaymentProviderProps) => {
   const { paymentId } = useParams<{ paymentId: string }>();
-  const debt = debtService.getDebtById(paymentId ?? "");
+  const [debt, setDebt] = useState<Debt | undefined>(
+    debtService.getDebtById(paymentId ?? "")
+  );
 
   if (!debt) {
     return <div>not found</div>;
@@ -101,6 +109,9 @@ export const PaymentProvider = ({ children }: PaymentProviderProps) => {
         paymentMethod
       );
       distributionService.updateDistributionContent(debt.id, content);
+      const completed = completedPayments(content);
+      const updatedDebt = debtService.updatePayment(debt.id, completed);
+      updatedDebt && setDebt(updatedDebt);
       return content;
     });
     handlePayTransactionEnd();

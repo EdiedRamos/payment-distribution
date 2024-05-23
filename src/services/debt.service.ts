@@ -29,6 +29,17 @@ class DebtService {
     return deepClone(debt);
   }
 
+  updatePayment(debtId: string, quantity: number): Debt | null {
+    const debt = this.getDebtById(debtId);
+    if (!debt) return null;
+    debt.paid = quantity;
+    if (debt.paid === debt.quantity) {
+      debt.isPaid = true;
+    }
+    database.save();
+    return debt;
+  }
+
   getAllDebts(): Debt[] {
     return deepClone(this.db.debts);
   }

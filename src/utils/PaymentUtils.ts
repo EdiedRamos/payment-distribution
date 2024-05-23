@@ -29,6 +29,13 @@ export function paymentCounter(content: DistributionContent): number {
   return countPayments.length;
 }
 
+export function completedPayments(content: DistributionContent): number {
+  return content.reduce((acc, curr) => {
+    if (isInterval(curr)) return acc;
+    return acc + (curr.isPaid ? curr.information.quantity : 0);
+  }, 0);
+}
+
 export function getNextToPayId(content: DistributionContent): string | null {
   for (const payment of content) {
     if (isPayment(payment) && !payment.isPaid) {
