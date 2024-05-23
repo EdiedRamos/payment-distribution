@@ -4,6 +4,7 @@ import {
   PaymentMethod,
   PaymentModalInfo,
 } from "@/models";
+import { Navigate, useParams } from "react-router";
 import {
   addPayment,
   changeEndDate,
@@ -22,7 +23,7 @@ import { debtService, distributionService } from "@/services";
 import { useEffect, useState } from "react";
 
 import { PaymentContext } from "./PaymentContext";
-import { useParams } from "react-router";
+import { URLS } from "@/constants";
 
 interface PaymentProviderProps {
   children: React.ReactNode;
@@ -35,7 +36,7 @@ export const PaymentProvider = ({ children }: PaymentProviderProps) => {
   );
 
   if (!debt) {
-    return <div>not found</div>;
+    return <Navigate to={URLS.debts} />;
   }
 
   const [distributionContent, setDistributionContent] =
