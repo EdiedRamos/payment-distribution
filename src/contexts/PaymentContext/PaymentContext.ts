@@ -14,6 +14,7 @@ interface PaymentManagment {
   paymentsLength: number;
   addPay: (intervalId: string) => void;
   handleEdit: () => void;
+  handleSave: () => void;
   editTitle: (paymentId: string, newTitle: string) => void;
   addPercentage: (paymentId: string) => void;
   subtractPercentage: (paymentId: string) => void;

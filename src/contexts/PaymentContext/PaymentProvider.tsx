@@ -48,7 +48,12 @@ export const PaymentProvider = ({ children }: PaymentProviderProps) => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const handleEdit = () => {
-    setIsEditing((prev) => !prev);
+    setIsEditing(true);
+  };
+
+  const handleSave = () => {
+    distributionService.updateDistributionContent(debt.id, distributionContent);
+    setIsEditing(false);
   };
 
   const editTitle = (paymentId: string, newTitle: string): void => {
@@ -56,27 +61,19 @@ export const PaymentProvider = ({ children }: PaymentProviderProps) => {
   };
 
   const addPercentage = (paymentId: string) => {
-    setDistributionContent((prev) => {
-      const content = changePercentage(debt, prev, paymentId, 1);
-      distributionService.updateDistributionContent(debt.id, content);
-      return content;
-    });
+    setDistributionContent((prev) =>
+      changePercentage(debt, prev, paymentId, 1)
+    );
   };
 
   const subtractPercentage = (paymentId: string) => {
-    setDistributionContent((prev) => {
-      const content = changePercentage(debt, prev, paymentId, -1);
-      distributionService.updateDistributionContent(debt.id, content);
-      return content;
-    });
+    setDistributionContent((prev) =>
+      changePercentage(debt, prev, paymentId, -1)
+    );
   };
 
   const editEndDate = (paymentId: string, newDate: string) => {
-    setDistributionContent((prev) => {
-      const content = changeEndDate(prev, paymentId, newDate);
-      distributionService.updateDistributionContent(debt.id, content);
-      return content;
-    });
+    setDistributionContent((prev) => changeEndDate(prev, paymentId, newDate));
   };
 
   const addPay = (intervalId: string) => {
@@ -137,6 +134,7 @@ export const PaymentProvider = ({ children }: PaymentProviderProps) => {
     addPay,
     isEditing,
     handleEdit,
+    handleSave,
     editTitle,
     addPercentage,
     subtractPercentage,

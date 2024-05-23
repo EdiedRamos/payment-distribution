@@ -23,6 +23,10 @@ export const Control = () => {
 
   const buttonIcon = payment.isEditing ? <FaRegSave /> : <FaPen />;
 
+  const buttonHandle = payment.isEditing
+    ? payment.handleSave
+    : payment.handleEdit;
+
   return (
     <div className="flex flex-wrap justify-between border-b-2 p-5 mb-5">
       <button className="flex text-orange-500 items-center gap-2">
@@ -33,7 +37,7 @@ export const Control = () => {
         <button
           disabled={payment.debt.isPaid}
           className="flex items-center gap-2 bg-orange-500 text-white rounded-md p-2"
-          onClick={payment.handleEdit}
+          onClick={buttonHandle}
         >
           {buttonText} {buttonIcon}
         </button>
