@@ -1,9 +1,4 @@
-import {
-  DistributionContent,
-  DistributionType,
-  PaymentMethod,
-  PaymentModalInfo,
-} from "@/models";
+import { DistributionContent, PaymentMethod, PaymentModalInfo } from "@/models";
 import {
   addPayment,
   changeEndDate,
@@ -16,7 +11,6 @@ import {
   generateInterval,
   getNextToPayId,
   paymentCounter,
-  toAbbreviateDate,
 } from "@/utils";
 import { debtService, distributionService } from "@/services";
 import { useEffect, useState } from "react";
