@@ -2,11 +2,14 @@ import { FaPen } from "react-icons/fa";
 import { FaRegSave } from "react-icons/fa";
 import { RiArrowDownWideLine } from "react-icons/ri";
 import { usePayment } from "@/contexts";
+import { withOneDecimal } from "@/utils";
 
 export const Control = () => {
   const payment = usePayment();
 
-  const debtRemaining = payment.debt.quantity - payment.debt.paid;
+  const debtRemaining = withOneDecimal(
+    payment.debt.quantity - payment.debt.paid
+  );
 
   return (
     <div className="flex flex-wrap justify-between border-b-2 p-5 mb-5">
