@@ -1,4 +1,5 @@
 import type {
+  Debt,
   DistributionContent,
   Interval,
   Payment,
@@ -57,4 +58,19 @@ export function getQuantityFromPercentage(
 
 export function isPaymentMethod(value: string): value is PaymentMethod {
   return PAYMENT_METHODS.includes(value as PaymentMethod);
+}
+
+export function buildPayment(debt: Debt, title?: string): Payment {
+  return {
+    type: DistributionType.Payment,
+    id: crypto.randomUUID(),
+    isPaid: false,
+    information: {
+      currency: debt.currency,
+      quantity: debt.quantity,
+      percentage: 100,
+      dateToPay: new Date(),
+      title: title ?? "Anticipo",
+    },
+  };
 }

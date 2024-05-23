@@ -1,5 +1,4 @@
 import {
-  Debt,
   DistributionContent,
   DistributionType,
   PaymentMethod,
@@ -12,21 +11,30 @@ import {
   changeTitle,
   setPayment,
 } from "./PaymentHelpers";
-import { generateInterval, getNextToPayId, paymentCounter } from "@/utils";
+import {
+  buildPayment,
+  generateInterval,
+  getNextToPayId,
+  paymentCounter,
+  toAbbreviateDate,
+} from "@/utils";
+import { debtService, distributionService } from "@/services";
 import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router";
 
-import { DEBT_MOCK } from "@/constants";
 import { PaymentContext } from "./PaymentContext";
+import { useParams } from "react-router";
 
 interface PaymentProviderProps {
   children: React.ReactNode;
 }
 
 export const PaymentProvider = ({ children }: PaymentProviderProps) => {
-  const debt = DEBT_MOCK;
-
   const { paymentId } = useParams<{ paymentId: string }>();
+  const debt = debtService.getDebtById(paymentId ?? "");
+
+  if (!debt) {
+    return <div>not found</div>;
+  }
 
   const [distributionContent, setDistributionContent] =
     useState<DistributionContent>([]);
@@ -58,11 +66,19 @@ export const PaymentProvider = ({ children }: PaymentProviderProps) => {
   };
 
   const editEndDate = (paymentId: string, newDate: string) => {
-    setDistributionContent((prev) => changeEndDate(prev, paymentId, newDate));
+    setDistributionContent((prev) => {
+      const content = changeEndDate(prev, paymentId, newDate);
+      distributionService.updateDistributionContent(debt.id, content);
+      return content;
+    });
   };
 
   const addPay = (intervalId: string) => {
-    setDistributionContent((prev) => addPayment(debt, prev, intervalId));
+    setDistributionContent((prev) => {
+      const content = addPayment(debt, prev, intervalId);
+      distributionService.updateDistributionContent(debt.id, content);
+      return content;
+    });
   };
 
   const handlePayTransactionStart = (paymentId: string) => {
@@ -87,21 +103,17 @@ export const PaymentProvider = ({ children }: PaymentProviderProps) => {
   };
 
   useEffect(() => {
-    setDistributionContent([
-      {
-        type: DistributionType.Payment,
-        id: "91c760dc-0779-452a-aa8c-6b133c31ddb1",
-        isPaid: false,
-        information: {
-          currency: debt.currency,
-          quantity: debt.quantity,
-          percentage: 100,
-          dateToPay: new Date(),
-          title: "Anticipo",
-        },
-      },
-      generateInterval(),
-    ]);
+    const content = distributionService.getDistributionContentByDebtId(debt.id);
+    if (!content) {
+      const distribution: DistributionContent = [
+        buildPayment(debt),
+        generateInterval(),
+      ];
+      setDistributionContent(distribution);
+      distributionService.updateDistributionContent(debt.id, distribution);
+    } else {
+      setDistributionContent(content);
+    }
   }, []);
 
   const values = {
