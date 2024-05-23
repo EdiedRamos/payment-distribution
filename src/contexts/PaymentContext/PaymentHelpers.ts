@@ -22,7 +22,10 @@ function getOppositeOperation(value: number): number {
 function canChangePercentage(payment: Payment, change: number): boolean {
   if (payment.isPaid) return false;
   if (change > 0) return true;
-  return payment.information.percentage >= Math.abs(change);
+  return (
+    payment.information.percentage >= Math.abs(change) &&
+    payment.information.percentage > 1
+  );
 }
 
 function canTakeHalf(payment: Payment): boolean {
