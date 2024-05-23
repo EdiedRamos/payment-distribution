@@ -14,15 +14,20 @@ import {
 } from "./PaymentHelpers";
 import { generateInterval, getNextToPayId, paymentCounter } from "@/utils";
 import { useEffect, useState } from "react";
+import { useLocation, useParams } from "react-router";
 
+import { DEBT_MOCK } from "@/constants";
 import { PaymentContext } from "./PaymentContext";
 
 interface PaymentProviderProps {
   children: React.ReactNode;
-  debt: Debt;
 }
 
-export const PaymentProvider = ({ children, debt }: PaymentProviderProps) => {
+export const PaymentProvider = ({ children }: PaymentProviderProps) => {
+  const debt = DEBT_MOCK;
+
+  const { paymentId } = useParams<{ paymentId: string }>();
+
   const [distributionContent, setDistributionContent] =
     useState<DistributionContent>([]);
 
