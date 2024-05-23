@@ -8,7 +8,7 @@ const SelectOptions = [
   { id: "2", name: "USD" },
 ];
 
-// ! temporal here
+// TODO: Move this to the correct folder
 function toCurrency(value: string): CurrencyInfo | null {
   const validCurrencies = ["COP", "USD"];
   if (!validCurrencies.includes(value)) return null;
@@ -17,6 +17,7 @@ function toCurrency(value: string): CurrencyInfo | null {
   };
 }
 
+// TODO: Create a custom hook for this component
 export const AddDebt = () => {
   const [quantity, setQuantity] = useState<string>("");
 

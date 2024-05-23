@@ -1,3 +1,10 @@
+/**
+ * According the UI I figured out just create one mixed array with two different concepts,
+ * the first one is to represent a payment and the other one is to represent an interval "payment adder"
+ * and with that I had a good UI without fighting with POSITIONS. Then for BACKEND purposes just I need
+ * to create a helper to separate those concepts.
+ */
+
 import { DistributionManager } from "@/components";
 import { usePayment } from "@/contexts";
 
