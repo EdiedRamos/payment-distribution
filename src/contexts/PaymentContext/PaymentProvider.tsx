@@ -48,15 +48,19 @@ export const PaymentProvider = ({ children }: PaymentProviderProps) => {
   };
 
   const addPercentage = (paymentId: string) => {
-    setDistributionContent((prev) =>
-      changePercentage(debt, prev, paymentId, 1)
-    );
+    setDistributionContent((prev) => {
+      const content = changePercentage(debt, prev, paymentId, 1);
+      distributionService.updateDistributionContent(debt.id, content);
+      return content;
+    });
   };
 
   const subtractPercentage = (paymentId: string) => {
-    setDistributionContent((prev) =>
-      changePercentage(debt, prev, paymentId, -1)
-    );
+    setDistributionContent((prev) => {
+      const content = changePercentage(debt, prev, paymentId, -1);
+      distributionService.updateDistributionContent(debt.id, content);
+      return content;
+    });
   };
 
   const editEndDate = (paymentId: string, newDate: string) => {
@@ -90,9 +94,15 @@ export const PaymentProvider = ({ children }: PaymentProviderProps) => {
   };
 
   const handlePayTransactionConfirm = (paymentMethod: PaymentMethod) => {
-    setDistributionContent((prev) =>
-      setPayment(prev, paymentModalInfo.paymentId, paymentMethod)
-    );
+    setDistributionContent((prev) => {
+      const content = setPayment(
+        prev,
+        paymentModalInfo.paymentId,
+        paymentMethod
+      );
+      distributionService.updateDistributionContent(debt.id, content);
+      return content;
+    });
     handlePayTransactionEnd();
   };
 
