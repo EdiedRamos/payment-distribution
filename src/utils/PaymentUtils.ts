@@ -81,3 +81,15 @@ export function buildPayment(debt: Debt, title?: string): Payment {
     },
   };
 }
+
+export function isDateGreaterOrEqual(date: string): boolean {
+  try {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const newDate = new Date(date);
+    newDate.setHours(0, 0, 0, 0);
+    return newDate >= today;
+  } catch {
+    return false;
+  }
+}

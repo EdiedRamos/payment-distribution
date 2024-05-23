@@ -10,6 +10,7 @@ interface PaymentInfoProps {
 
 export const PaymentEdit = ({ payment }: PaymentInfoProps) => {
   const {
+    error,
     handleChangeTitle,
     cantChangePercentage,
     handleDecrement,
@@ -20,7 +21,11 @@ export const PaymentEdit = ({ payment }: PaymentInfoProps) => {
   return (
     <div className="relative flex flex-col items-center text-center">
       <div className="w-[50px] h-[50px] bg-blue-500 rounded-[50%]"></div>
-      <div className="absolute bg-white border-2 rounded-md p-2 min-w-[150px] top-14">
+      <div
+        className={`${
+          error ? "border-red-500" : ""
+        } absolute bg-white border-2 rounded-md p-2 min-w-[150px] top-14`}
+      >
         <form className="w-[150px]">
           <input
             className="border-2 p-1 rounded-md w-full font-bold"
