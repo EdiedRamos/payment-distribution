@@ -13,7 +13,7 @@ export const AddPayment = ({ interval }: AddPaymenetProps) => {
     <button
       disabled={payment.isEditing}
       className={`${
-        payment.isEditing ? "invisible" : ""
+        payment.isEditing || payment.debt.isPaid ? "invisible" : ""
       } relative flex justify-center items-center w-[25px] h-[25px] bg-gray-200 rounded-[50%]`}
       onClick={() => payment.addPay(interval.id)}
     >
