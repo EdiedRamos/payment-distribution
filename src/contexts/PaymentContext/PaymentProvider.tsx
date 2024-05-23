@@ -53,6 +53,7 @@ export const PaymentProvider = ({ children }: PaymentProviderProps) => {
   };
 
   const handleSave = () => {
+    // TODO: Make a PUT request for updating the payments
     distributionService.updateDistributionContent(debt.id, distributionContent);
     setIsEditing(false);
   };
@@ -78,6 +79,7 @@ export const PaymentProvider = ({ children }: PaymentProviderProps) => {
   };
 
   const addPay = (intervalId: string) => {
+    // TODO: Make a POST request for adding a new pay
     setDistributionContent((prev) => {
       const content = addPayment(debt, prev, intervalId);
       distributionService.updateDistributionContent(debt.id, content);
@@ -100,6 +102,7 @@ export const PaymentProvider = ({ children }: PaymentProviderProps) => {
   };
 
   const handlePayTransactionConfirm = (paymentMethod: PaymentMethod) => {
+    // TODO: Make a POST request for saving the transaction
     setDistributionContent((prev) => {
       const content = setPayment(
         prev,

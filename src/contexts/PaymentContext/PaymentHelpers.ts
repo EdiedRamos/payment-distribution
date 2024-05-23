@@ -1,3 +1,5 @@
+// TODO: Refactor this file, some logic can be improved with DRY
+
 import {
   DistributionType,
   PaymentMethod,

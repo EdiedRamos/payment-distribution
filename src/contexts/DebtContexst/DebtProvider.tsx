@@ -13,6 +13,7 @@ export const DebtProvider = ({ children }: DebtProvider) => {
   const [debts, setDebts] = useState<Debt[]>([]);
 
   const addDebt = (debt: Debt) => {
+    // TODO: Make a POST request for adding a new debt
     debtService.addDebt(debt);
     setDebts((prev) => [...prev, debt]);
     setShowAddModal(false);
@@ -22,6 +23,7 @@ export const DebtProvider = ({ children }: DebtProvider) => {
   const handleHide = () => setShowAddModal(false);
 
   useEffect(() => {
+    // TODO: Make a GET request for getting all the debts
     setDebts(debtService.getAllDebts());
   }, []);
 
