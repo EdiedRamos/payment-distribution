@@ -4,9 +4,9 @@ import type {
   Distribution,
   DistributionContent,
 } from "@/models";
-import { deepClone, isInterval } from "@/utils";
 
 import { database } from "@/services";
+import { deepClone } from "@/utils";
 
 class DistributionService {
   private static instance: DistributionService;
