@@ -17,7 +17,7 @@ export const Debts = () => {
               : debt.paid > 0
               ? "bg-orange-500"
               : "bg-slate-500"
-          } flex flex-col items-center p-2 gap-2 text-white rounded-xl shadow-lg hover:cursor-pointer hover:opacity-90 w-[95%] sm:w-[350px]`}
+          } flex flex-col items-center p-2 gap-2 text-white rounded-xl shadow-lg hover:cursor-pointer hover:opacity-90 hover:scale-95 transition-all w-[95%] sm:w-[350px]`}
         >
           <p className="font-medium">Deuda: {index + 1}</p>
           <p className="font-bold">

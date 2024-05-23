@@ -36,7 +36,7 @@ export const Control = () => {
       <div className="flex items-center flex-wrap gap-5">
         <button
           disabled={payment.debt.isPaid}
-          className="flex items-center gap-2 bg-orange-500 text-white rounded-md p-2"
+          className="flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white rounded-md p-2"
           onClick={buttonHandle}
         >
           {buttonText} {buttonIcon}

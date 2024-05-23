@@ -20,7 +20,7 @@ export const PaymentTransaction = () => {
       <h3 className="font-bold text-lg">Pagar</h3>
       <p>Selecciona el método de pago.</p>
       <div>
-        <p>Estado</p>
+        <p className="my-2">Estado</p>
         <Select
           options={[
             {
@@ -33,16 +33,16 @@ export const PaymentTransaction = () => {
           selectedRef={selectedRef}
         />
       </div>
-      <div className="flex justify-end gap-3">
+      <div className="flex justify-end gap-4 mt-2">
         <button
           onClick={handlePayTransactionEnd}
-          className="p-2 rounded-md border-2 border-blue-500"
+          className="p-2 rounded-md bg-red-500 hover:bg-red-600 text-white"
         >
           Cancelar
         </button>
         <button
           onClick={handleSave}
-          className="p-2 bg-orange-500 rounded-md text-white"
+          className="p-2 bg-orange-500 hover:bg-orange-600 rounded-md text-white"
         >
           Guardar
         </button>
