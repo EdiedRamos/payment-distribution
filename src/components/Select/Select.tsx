@@ -16,7 +16,7 @@ export const Select = ({ options, selectedRef }: Select) => {
   return (
     <div className="relative max-w-[200px] select-none" ref={selectRef}>
       <div
-        className="flex justify-between items-center hover:cursor-pointer hover:opacity-80 text-cc-light border-[3px] p-2 rounded-lg border-cc-dark"
+        className="bg-gray-100 flex justify-between items-center hover:cursor-pointer hover:opacity-80 text-cc-light border-[3px] p-2 rounded-lg border-cc-dark"
         onClick={handleShowOptions}
       >
         <p>{selectedOption.name} </p>
