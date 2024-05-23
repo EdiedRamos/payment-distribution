@@ -25,10 +25,10 @@ export const Modal = ({ children, show, onClose }: ModalProps) => {
 
   return ReactDOM.createPortal(
     <div className="bg-[rgba(0,0,0,.4)] flex fixed top-0 left-0 justify-center items-center w-full h-full overflow-auto">
-      <div className="bg-slate-300 min-w-[90%] md:min-w-[400px] min-h-[100px] rounded-md">
-        <div className="bg-slate-500 flex justify-end p-2 rounded-t-md">
+      <div className="shadow-md animate-scaleUp bg-gray-50 min-w-[90%] md:min-w-[400px] min-h-[100px] rounded-xl">
+        <div className="bg-gray-100 flex justify-end p-2 rounded-t-xl">
           <button onClick={hide}>
-            <FaWindowClose className="text-orange-200" />
+            <FaWindowClose size={18} className="text-red-500" />
           </button>
         </div>
         <div>{children}</div>
