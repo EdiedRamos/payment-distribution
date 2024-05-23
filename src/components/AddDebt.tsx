@@ -50,8 +50,10 @@ export const AddDebt = () => {
         className="flex flex-col items-center p-5 gap-3"
         onSubmit={handleSubmit}
       >
-        <label>
-          Cantidad
+        <label className="flex flex-col items-center gap-1">
+          <span className="text-white font-medium bg-slate-500 p-1 rounded-md">
+            Cantidad
+          </span>
           <input
             required
             min={1}
@@ -59,11 +61,12 @@ export const AddDebt = () => {
             onChange={handleQuantity}
             type="number"
             placeholder="Ingrese cantidad"
+            className="border-2 p-3 rounded-md outline-none"
           />
         </label>
         <Select selectedRef={currencyRef} options={SelectOptions} />
-        <button className="text-white bg-orange-500 p-3 rounded-md hover:bg-orange-600">
-          crear
+        <button className="text-white bg-green-500 p-3 rounded-md hover:bg-green-600">
+          Crear
         </button>
       </form>
     </div>

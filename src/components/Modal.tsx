@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { FaWindowClose } from "react-icons/fa";
+import { IoCloseCircle } from "react-icons/io5";
 import ReactDOM from "react-dom";
 
 interface ModalProps {
@@ -28,7 +28,7 @@ export const Modal = ({ children, show, onClose }: ModalProps) => {
       <div className="shadow-md animate-scaleUp bg-gray-50 min-w-[90%] md:min-w-[400px] min-h-[100px] rounded-xl">
         <div className="bg-gray-100 flex justify-end p-2 rounded-t-xl">
           <button onClick={hide}>
-            <FaWindowClose size={18} className="text-red-500" />
+            <IoCloseCircle size={22} className="text-red-500" />
           </button>
         </div>
         <div>{children}</div>
